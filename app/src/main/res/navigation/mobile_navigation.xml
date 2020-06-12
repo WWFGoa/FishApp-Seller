@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_new">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_existing"
         android:name="com.deepwares.fishmarketplace.ui.home.ExistingOrderFragment"
         android:label="@string/order_existing"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_new"
         android:name="com.deepwares.fishmarketplace.ui.dashboard.CreateFragment"
         android:label="@string/order_new"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_past"
         android:name="com.deepwares.fishmarketplace.ui.notifications.PastOrderFragment"
         android:label="@string/order_past"
         tools:layout="@layout/fragment_notifications" />
