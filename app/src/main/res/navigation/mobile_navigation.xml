@@ -8,18 +8,43 @@
     <fragment
         android:id="@+id/navigation_existing"
         android:name="com.deepwares.fishmarketplace.ui.home.ExistingOrderFragment"
-        android:label="@string/order_existing"
-        tools:layout="@layout/fragment_home" />
+        android:label="@string/order_existing_label"
+        tools:layout="@layout/fragment_existing" />
 
     <fragment
         android:id="@+id/navigation_new"
-        android:name="com.deepwares.fishmarketplace.ui.dashboard.CreateFragment"
-        android:label="@string/order_new"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.deepwares.fishmarketplace.ui.creator.CreateFragment"
+        android:label="@string/order_new_label"
+        tools:layout="@layout/fragment_create">
+        <action
+            android:id="@+id/action_navigation_new_to_navigation_add"
+            app:destination="@id/navigation_add">
+            <argument
+                android:name="image"
+                app:argType="integer" />
+            <argument
+                android:name="name"
+                app:argType="string" />
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_past"
         android:name="com.deepwares.fishmarketplace.ui.notifications.PastOrderFragment"
-        android:label="@string/order_past"
-        tools:layout="@layout/fragment_notifications" />
+        android:label="@string/order_past_label"
+        tools:layout="@layout/fragment_past" />
+
+    <fragment
+        android:id="@+id/navigation_add"
+        android:name="com.deepwares.fishmarketplace.ui.creator.AddInventoryFragment"
+        tools:layout="@layout/fragment_past">
+
+        <argument
+            android:name="image"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
+
 </navigation>
