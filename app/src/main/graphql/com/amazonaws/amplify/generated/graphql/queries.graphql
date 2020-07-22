@@ -1,0 +1,132 @@
+# this is an auto generated file. This will be overwritten
+query GetSpecies($id: ID!) {
+  getSpecies(id: $id) {
+    id
+    name
+    minPrice
+    maxPrice
+    minWeight
+    maxWeight
+    active
+    image
+  }
+}
+query ListSpeciess(
+  $filter: ModelSpeciesFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listSpeciess(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      minPrice
+      maxPrice
+      minWeight
+      maxWeight
+      active
+      image
+    }
+    nextToken
+  }
+}
+query GetInventory($id: ID!) {
+  getInventory(id: $id) {
+    id
+    species {
+      id
+      name
+      minPrice
+      maxPrice
+      minWeight
+      maxWeight
+      active
+      image
+    }
+    quantity
+    price
+    catchLocation
+    sellLocation
+    catchTime
+    sellTime
+    size
+  }
+}
+query ListInventorys(
+  $filter: ModelInventoryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listInventorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      species {
+        id
+        name
+        minPrice
+        maxPrice
+        minWeight
+        maxWeight
+        active
+        image
+      }
+      quantity
+      price
+      catchLocation
+      sellLocation
+      catchTime
+      sellTime
+      size
+    }
+    nextToken
+  }
+}
+query GetOrder($id: ID!) {
+  getOrder(id: $id) {
+    id
+    quantity
+    inventory {
+      id
+      species {
+        id
+        name
+        minPrice
+        maxPrice
+        minWeight
+        maxWeight
+        active
+        image
+      }
+      quantity
+      price
+      catchLocation
+      sellLocation
+      catchTime
+      sellTime
+      size
+    }
+  }
+}
+query ListOrders(
+  $filter: ModelOrderFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      quantity
+      inventory {
+        id
+        quantity
+        price
+        catchLocation
+        sellLocation
+        catchTime
+        sellTime
+        size
+      }
+    }
+    nextToken
+  }
+}

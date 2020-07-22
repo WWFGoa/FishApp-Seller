@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-fishmarketplace-dev-43359-authRole",
+            "UnauthRoleArn": "arn:aws:iam::770138636768:role/amplify-fishmarketplace-dev-43359-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::770138636768:role/amplify-fishmarketplace-dev-43359-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-fishmarketplace-dev-43359-deployment",
+            "UnauthRoleName": "amplify-fishmarketplace-dev-43359-unauthRole",
+            "StackName": "amplify-fishmarketplace-dev-43359",
+            "StackId": "arn:aws:cloudformation:us-east-1:770138636768:stack/amplify-fishmarketplace-dev-43359/792a0cb0-cba6-11ea-9d26-0a3fc8cbcb75",
+            "AmplifyAppId": "d260i3nuobclv0"
+        }
+    }
+}
