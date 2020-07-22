@@ -46,7 +46,6 @@ class CreateViewModel : ViewModel() {
         Species("Flounder", R.drawable.ic_asset_30)
     )
 
-
     private val _species = MutableLiveData<List<Species>>().apply {
         value = species
     }
@@ -67,8 +66,6 @@ class CreateViewModel : ViewModel() {
                 },
                 { error: ApiException? -> Log.e(TAG, "Create Inventory failed", error) }
             )
-
-
         }
     }
 
