@@ -38,17 +38,9 @@ subscription OnDeleteSpecies {
 subscription OnCreateInventory {
   onCreateInventory {
     id
-    species {
-      id
-      name
-      minPrice
-      maxPrice
-      minWeight
-      maxWeight
-      active
-      image
-    }
+    species
     quantity
+    availableQuantity
     price
     catchLocation
     sellLocation
@@ -60,17 +52,9 @@ subscription OnCreateInventory {
 subscription OnUpdateInventory {
   onUpdateInventory {
     id
-    species {
-      id
-      name
-      minPrice
-      maxPrice
-      minWeight
-      maxWeight
-      active
-      image
-    }
+    species
     quantity
+    availableQuantity
     price
     catchLocation
     sellLocation
@@ -82,17 +66,9 @@ subscription OnUpdateInventory {
 subscription OnDeleteInventory {
   onDeleteInventory {
     id
-    species {
-      id
-      name
-      minPrice
-      maxPrice
-      minWeight
-      maxWeight
-      active
-      image
-    }
+    species
     quantity
+    availableQuantity
     price
     catchLocation
     sellLocation
@@ -107,17 +83,9 @@ subscription OnCreateOrder {
     quantity
     inventory {
       id
-      species {
-        id
-        name
-        minPrice
-        maxPrice
-        minWeight
-        maxWeight
-        active
-        image
-      }
+      species
       quantity
+      availableQuantity
       price
       catchLocation
       sellLocation
@@ -133,17 +101,9 @@ subscription OnUpdateOrder {
     quantity
     inventory {
       id
-      species {
-        id
-        name
-        minPrice
-        maxPrice
-        minWeight
-        maxWeight
-        active
-        image
-      }
+      species
       quantity
+      availableQuantity
       price
       catchLocation
       sellLocation
@@ -159,17 +119,9 @@ subscription OnDeleteOrder {
     quantity
     inventory {
       id
-      species {
-        id
-        name
-        minPrice
-        maxPrice
-        minWeight
-        maxWeight
-        active
-        image
-      }
+      species
       quantity
+      availableQuantity
       price
       catchLocation
       sellLocation

@@ -18,6 +18,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 /** This is an auto generated class representing the Species type in your schema. */
 @SuppressWarnings("all")
 @ModelConfig(pluralName = "Species")
+@Index(name = "undefined", fields = {"id","name"})
 public final class Species implements Model {
   public static final QueryField ID = field("id");
   public static final QueryField NAME = field("name");

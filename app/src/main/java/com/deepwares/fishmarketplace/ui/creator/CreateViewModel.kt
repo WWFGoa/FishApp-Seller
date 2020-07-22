@@ -55,16 +55,19 @@ class CreateViewModel : ViewModel() {
 
     fun createListing() {
         inventory?.let {
+
             val item = it.build()
             Amplify.API.mutate(
                 ModelMutation.create(item),
                 { response ->
                     Log.d(
                         TAG,
-                        "Added Inventory with id: " + response.getData().getId()
+                        "Added Inventory with id: " + response?.data?.id
                     )
                 },
-                { error: ApiException? -> Log.e(TAG, "Create Inventory failed", error) }
+                { error: ApiException? ->
+                    Log.e(TAG, "Create Inventory failed", error)
+                }
             )
         }
     }

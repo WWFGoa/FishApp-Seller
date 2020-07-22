@@ -83,6 +83,7 @@ class AddInventoryStepFragment(contentLayoutId: Int) : Fragment(contentLayoutId)
                 }
                 CreatorSteps.WEIGHT -> {
                     createViewModel.inventory?.quantity(weightPicker?.value)
+                    createViewModel.inventory?.availableQuantity(weightPicker?.value)
                 }
                 CreatorSteps.PRICE -> {
                     createViewModel.inventory?.price(pricePicker?.value)
@@ -92,8 +93,8 @@ class AddInventoryStepFragment(contentLayoutId: Int) : Fragment(contentLayoutId)
                     createViewModel.inventory?.catchTime(catchTimePicker?.currentHour?.toString())
                 }
                 CreatorSteps.SELL_TIME -> {
-                    createViewModel.inventory?.catchLocation(sellLocation?.text.toString())
-                    createViewModel.inventory?.catchTime(sellTimePicker?.currentHour?.toString())
+                    createViewModel.inventory?.sellLocation(sellLocation?.text.toString())
+                    createViewModel.inventory?.sellTime(sellTimePicker?.currentHour?.toString())
                 }
                 CreatorSteps.FINISH -> {
 

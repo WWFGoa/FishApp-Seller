@@ -51,7 +51,11 @@ class OrderAdapter : RecyclerView.Adapter<OrderVH>() {
 
     override fun onBindViewHolder(holder: OrderVH, position: Int) {
         val item = items[position]
-        val species = species[item.]
+        val species = species[item.species]
+        holder.image.setImageResource(species.image)
+        holder.cost.setText(item.price)
+        holder.quantity.setText(item.quantity)
+        holder.name.setText(species.name)
 
     }
 

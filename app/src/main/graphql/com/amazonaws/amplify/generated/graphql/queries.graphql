@@ -1,6 +1,6 @@
 # this is an auto generated file. This will be overwritten
-query GetSpecies($id: ID!) {
-  getSpecies(id: $id) {
+query GetSpecies($id: ID!, $name: String!) {
+  getSpecies(id: $id, name: $name) {
     id
     name
     minPrice
@@ -12,11 +12,21 @@ query GetSpecies($id: ID!) {
   }
 }
 query ListSpeciess(
+  $id: ID
+  $name: ModelStringKeyConditionInput
   $filter: ModelSpeciesFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
-  listSpeciess(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listSpeciess(
+    id: $id
+    name: $name
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
     items {
       id
       name
@@ -33,17 +43,9 @@ query ListSpeciess(
 query GetInventory($id: ID!) {
   getInventory(id: $id) {
     id
-    species {
-      id
-      name
-      minPrice
-      maxPrice
-      minWeight
-      maxWeight
-      active
-      image
-    }
+    species
     quantity
+    availableQuantity
     price
     catchLocation
     sellLocation
@@ -60,17 +62,9 @@ query ListInventorys(
   listInventorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      species {
-        id
-        name
-        minPrice
-        maxPrice
-        minWeight
-        maxWeight
-        active
-        image
-      }
+      species
       quantity
+      availableQuantity
       price
       catchLocation
       sellLocation
@@ -87,17 +81,9 @@ query GetOrder($id: ID!) {
     quantity
     inventory {
       id
-      species {
-        id
-        name
-        minPrice
-        maxPrice
-        minWeight
-        maxWeight
-        active
-        image
-      }
+      species
       quantity
+      availableQuantity
       price
       catchLocation
       sellLocation
@@ -118,7 +104,9 @@ query ListOrders(
       quantity
       inventory {
         id
+        species
         quantity
+        availableQuantity
         price
         catchLocation
         sellLocation

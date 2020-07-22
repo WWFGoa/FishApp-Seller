@@ -50,17 +50,9 @@ mutation CreateInventory(
 ) {
   createInventory(input: $input, condition: $condition) {
     id
-    species {
-      id
-      name
-      minPrice
-      maxPrice
-      minWeight
-      maxWeight
-      active
-      image
-    }
+    species
     quantity
+    availableQuantity
     price
     catchLocation
     sellLocation
@@ -75,17 +67,9 @@ mutation UpdateInventory(
 ) {
   updateInventory(input: $input, condition: $condition) {
     id
-    species {
-      id
-      name
-      minPrice
-      maxPrice
-      minWeight
-      maxWeight
-      active
-      image
-    }
+    species
     quantity
+    availableQuantity
     price
     catchLocation
     sellLocation
@@ -100,17 +84,9 @@ mutation DeleteInventory(
 ) {
   deleteInventory(input: $input, condition: $condition) {
     id
-    species {
-      id
-      name
-      minPrice
-      maxPrice
-      minWeight
-      maxWeight
-      active
-      image
-    }
+    species
     quantity
+    availableQuantity
     price
     catchLocation
     sellLocation
@@ -128,17 +104,9 @@ mutation CreateOrder(
     quantity
     inventory {
       id
-      species {
-        id
-        name
-        minPrice
-        maxPrice
-        minWeight
-        maxWeight
-        active
-        image
-      }
+      species
       quantity
+      availableQuantity
       price
       catchLocation
       sellLocation
@@ -157,17 +125,9 @@ mutation UpdateOrder(
     quantity
     inventory {
       id
-      species {
-        id
-        name
-        minPrice
-        maxPrice
-        minWeight
-        maxWeight
-        active
-        image
-      }
+      species
       quantity
+      availableQuantity
       price
       catchLocation
       sellLocation
@@ -186,17 +146,9 @@ mutation DeleteOrder(
     quantity
     inventory {
       id
-      species {
-        id
-        name
-        minPrice
-        maxPrice
-        minWeight
-        maxWeight
-        active
-        image
-      }
+      species
       quantity
+      availableQuantity
       price
       catchLocation
       sellLocation

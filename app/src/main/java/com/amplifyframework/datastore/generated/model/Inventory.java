@@ -20,7 +20,9 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 @ModelConfig(pluralName = "Inventories")
 public final class Inventory implements Model {
   public static final QueryField ID = field("id");
+  public static final QueryField SPECIES = field("species");
   public static final QueryField QUANTITY = field("quantity");
+  public static final QueryField AVAILABLE_QUANTITY = field("availableQuantity");
   public static final QueryField PRICE = field("price");
   public static final QueryField CATCH_LOCATION = field("catchLocation");
   public static final QueryField SELL_LOCATION = field("sellLocation");
@@ -28,7 +30,9 @@ public final class Inventory implements Model {
   public static final QueryField SELL_TIME = field("sellTime");
   public static final QueryField SIZE = field("size");
   private final @ModelField(targetType="ID", isRequired = true) String id;
+  private final @ModelField(targetType="Int", isRequired = true) Integer species;
   private final @ModelField(targetType="Int", isRequired = true) Integer quantity;
+  private final @ModelField(targetType="Int", isRequired = true) Integer availableQuantity;
   private final @ModelField(targetType="Int", isRequired = true) Integer price;
   private final @ModelField(targetType="String", isRequired = true) String catchLocation;
   private final @ModelField(targetType="String", isRequired = true) String sellLocation;
@@ -39,8 +43,16 @@ public final class Inventory implements Model {
       return id;
   }
   
+  public Integer getSpecies() {
+      return species;
+  }
+  
   public Integer getQuantity() {
       return quantity;
+  }
+  
+  public Integer getAvailableQuantity() {
+      return availableQuantity;
   }
   
   public Integer getPrice() {
@@ -67,9 +79,11 @@ public final class Inventory implements Model {
       return size;
   }
   
-  private Inventory(String id, Integer quantity, Integer price, String catchLocation, String sellLocation, String catchTime, String sellTime, CatchSize size) {
+  private Inventory(String id, Integer species, Integer quantity, Integer availableQuantity, Integer price, String catchLocation, String sellLocation, String catchTime, String sellTime, CatchSize size) {
     this.id = id;
+    this.species = species;
     this.quantity = quantity;
+    this.availableQuantity = availableQuantity;
     this.price = price;
     this.catchLocation = catchLocation;
     this.sellLocation = sellLocation;
@@ -87,7 +101,9 @@ public final class Inventory implements Model {
       } else {
       Inventory inventory = (Inventory) obj;
       return ObjectsCompat.equals(getId(), inventory.getId()) &&
+              ObjectsCompat.equals(getSpecies(), inventory.getSpecies()) &&
               ObjectsCompat.equals(getQuantity(), inventory.getQuantity()) &&
+              ObjectsCompat.equals(getAvailableQuantity(), inventory.getAvailableQuantity()) &&
               ObjectsCompat.equals(getPrice(), inventory.getPrice()) &&
               ObjectsCompat.equals(getCatchLocation(), inventory.getCatchLocation()) &&
               ObjectsCompat.equals(getSellLocation(), inventory.getSellLocation()) &&
@@ -101,7 +117,9 @@ public final class Inventory implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
+      .append(getSpecies())
       .append(getQuantity())
+      .append(getAvailableQuantity())
       .append(getPrice())
       .append(getCatchLocation())
       .append(getSellLocation())
@@ -112,7 +130,7 @@ public final class Inventory implements Model {
       .hashCode();
   }
   
-  public static QuantityStep builder() {
+  public static SpeciesStep builder() {
       return new Builder();
   }
   
@@ -143,13 +161,17 @@ public final class Inventory implements Model {
       null,
       null,
       null,
+      null,
+      null,
       null
     );
   }
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
+      species,
       quantity,
+      availableQuantity,
       price,
       catchLocation,
       sellLocation,
@@ -157,8 +179,18 @@ public final class Inventory implements Model {
       sellTime,
       size);
   }
+  public interface SpeciesStep {
+    QuantityStep species(Integer species);
+  }
+  
+
   public interface QuantityStep {
-    PriceStep quantity(Integer quantity);
+    AvailableQuantityStep quantity(Integer quantity);
+  }
+  
+
+  public interface AvailableQuantityStep {
+    PriceStep availableQuantity(Integer availableQuantity);
   }
   
 
@@ -198,9 +230,11 @@ public final class Inventory implements Model {
   }
   
 
-  public static class Builder implements QuantityStep, PriceStep, CatchLocationStep, SellLocationStep, CatchTimeStep, SellTimeStep, SizeStep, BuildStep {
+  public static class Builder implements SpeciesStep, QuantityStep, AvailableQuantityStep, PriceStep, CatchLocationStep, SellLocationStep, CatchTimeStep, SellTimeStep, SizeStep, BuildStep {
     private String id;
+    private Integer species;
     private Integer quantity;
+    private Integer availableQuantity;
     private Integer price;
     private String catchLocation;
     private String sellLocation;
@@ -213,7 +247,9 @@ public final class Inventory implements Model {
         
         return new Inventory(
           id,
+          species,
           quantity,
+          availableQuantity,
           price,
           catchLocation,
           sellLocation,
@@ -223,9 +259,23 @@ public final class Inventory implements Model {
     }
     
     @Override
-     public PriceStep quantity(Integer quantity) {
+     public QuantityStep species(Integer species) {
+        Objects.requireNonNull(species);
+        this.species = species;
+        return this;
+    }
+    
+    @Override
+     public AvailableQuantityStep quantity(Integer quantity) {
         Objects.requireNonNull(quantity);
         this.quantity = quantity;
+        return this;
+    }
+    
+    @Override
+     public PriceStep availableQuantity(Integer availableQuantity) {
+        Objects.requireNonNull(availableQuantity);
+        this.availableQuantity = availableQuantity;
         return this;
     }
     
@@ -294,9 +344,11 @@ public final class Inventory implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, Integer quantity, Integer price, String catchLocation, String sellLocation, String catchTime, String sellTime, CatchSize size) {
+    private CopyOfBuilder(String id, Integer species, Integer quantity, Integer availableQuantity, Integer price, String catchLocation, String sellLocation, String catchTime, String sellTime, CatchSize size) {
       super.id(id);
-      super.quantity(quantity)
+      super.species(species)
+        .quantity(quantity)
+        .availableQuantity(availableQuantity)
         .price(price)
         .catchLocation(catchLocation)
         .sellLocation(sellLocation)
@@ -306,8 +358,18 @@ public final class Inventory implements Model {
     }
     
     @Override
+     public CopyOfBuilder species(Integer species) {
+      return (CopyOfBuilder) super.species(species);
+    }
+    
+    @Override
      public CopyOfBuilder quantity(Integer quantity) {
       return (CopyOfBuilder) super.quantity(quantity);
+    }
+    
+    @Override
+     public CopyOfBuilder availableQuantity(Integer availableQuantity) {
+      return (CopyOfBuilder) super.availableQuantity(availableQuantity);
     }
     
     @Override

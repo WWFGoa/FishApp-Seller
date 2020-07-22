@@ -12,6 +12,7 @@ import com.amplifyframework.datastore.generated.model.Inventory
 import com.amplifyframework.datastore.generated.model.Species
 import com.deepwares.fishmarketplace.R
 import kotlinx.android.synthetic.main.fragment_add_inventory.*
+import kotlinx.android.synthetic.main.order_item.view.*
 
 class AddInventoryFragment : Fragment() {
 
@@ -36,7 +37,10 @@ class AddInventoryFragment : Fragment() {
         createViewModel.inventory = Inventory.Builder()
         createViewModel.currentSpecies = Species.Builder()
 
+
         createViewModel.createSpecies(species, args.image)
+        createViewModel.inventory!!.species(args.image)
+
         pager.adapter = CreatorPagerAdapter(
             childFragmentManager,
             FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
