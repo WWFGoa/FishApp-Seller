@@ -30,7 +30,7 @@ class CreateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         createViewModel =
-            ViewModelProvider(this).get(CreateViewModel::class.java)
+            ViewModelProvider(requireActivity()).get(CreateViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_create, container, false)
         return root
     }

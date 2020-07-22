@@ -1,12 +1,20 @@
 package com.deepwares.fishmarketplace.ui.creator
 
-import androidx.lifecycle.LiveData
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.amplifyframework.api.ApiException
+import com.amplifyframework.api.graphql.model.ModelMutation
+import com.amplifyframework.core.Amplify
+import com.amplifyframework.datastore.generated.model.Inventory
 import com.deepwares.fishmarketplace.R
 import com.deepwares.fishmarketplace.model.Species
 
+
 class CreateViewModel : ViewModel() {
+
+    val TAG = CreateViewModel::class.java.name
+
     val species = arrayListOf(
 
         Species("Carp", R.drawable.ic_asset_3),
@@ -43,4 +51,48 @@ class CreateViewModel : ViewModel() {
         value = species
     }
     val speciesLiveData: MutableLiveData<List<Species>> = _species
+    var inventory: Inventory.Builder? = null
+    var currentSpecies: com.amplifyframework.datastore.generated.model.Species.Builder? = null
+
+    fun createListing() {
+        inventory?.let {
+            val item = it.build()
+            Amplify.API.mutate(
+                ModelMutation.create(item),
+                { response ->
+                    Log.d(
+                        TAG,
+                        "Added Inventory with id: " + response.getData().getId()
+                    )
+                },
+                { error: ApiException? -> Log.e(TAG, "Create Inventory failed", error) }
+            )
+
+
+        }
+    }
+
+    fun createSpecies(species: Species, image: Int) {
+        currentSpecies?.let {
+            it.active(true)
+            it.maxPrice(500)
+            it.minPrice(200)
+            it.maxWeight(20)
+            it.minWeight(2)
+            it.image(image)
+            it.name(species.name)
+            val item = it.build()
+            Amplify.API.mutate(
+                ModelMutation.create(item),
+                { response ->
+                    Log.d(TAG, "Added Species with id: " + response.data.id)
+                },
+                { error: ApiException? ->
+                    Log.e(TAG, "Create Species failed", error)
+                }
+            )
+
+
+        }
+    }
 }

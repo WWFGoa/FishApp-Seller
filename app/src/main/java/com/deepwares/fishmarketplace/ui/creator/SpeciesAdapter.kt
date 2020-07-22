@@ -14,7 +14,7 @@ class SpeciesAdapter(var speciesSelector: SpeciesSelector?) : RecyclerView.Adapt
         val vh = SpeciesVH(view)
         vh.itemView.setOnClickListener {
             val item = species[vh.adapterPosition]
-            speciesSelector?.selectSpecies(item)
+            speciesSelector?.selectSpecies(item,vh.adapterPosition)
         }
         return vh
 

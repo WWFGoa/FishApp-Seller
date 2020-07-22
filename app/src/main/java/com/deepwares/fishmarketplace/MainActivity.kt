@@ -13,6 +13,7 @@ import com.deepwares.fishmarketplace.interfaces.SpeciesSelector
 import com.deepwares.fishmarketplace.model.Species
 import com.deepwares.fishmarketplace.ui.creator.CreateFragmentDirections
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.FieldPosition
 
 class MainActivity : AppCompatActivity(), SpeciesSelector {
     lateinit var navController: NavController
@@ -33,9 +34,9 @@ class MainActivity : AppCompatActivity(), SpeciesSelector {
         navView.setupWithNavController(navController)
     }
 
-    override fun selectSpecies(species: Species) {
+    override fun selectSpecies(species: Species, position: Int) {
         val action =
-            CreateFragmentDirections.actionNavigationNewToNavigationAdd(species.image, species.name)
+            CreateFragmentDirections.actionNavigationNewToNavigationAdd(position, species.name)
         navController.navigate(action)
     }
 }
