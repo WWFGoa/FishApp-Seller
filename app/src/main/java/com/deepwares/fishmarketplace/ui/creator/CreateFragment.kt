@@ -1,5 +1,6 @@
 package com.deepwares.fishmarketplace.ui.creator
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.deepwares.fishmarketplace.R
 import com.deepwares.fishmarketplace.interfaces.SpeciesSelector
 import kotlinx.android.synthetic.main.fragment_create.*
@@ -44,6 +46,31 @@ class CreateFragment : Fragment() {
                 speciesAdapter.species.clear()
                 speciesAdapter.species.addAll(it)
                 speciesAdapter.notifyDataSetChanged()
+
+            }
+        })
+
+        val padding = resources.getDimensionPixelSize(R.dimen.padding_standard)
+        list.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                val index = parent.getChildAdapterPosition(view)
+                val pos = index % 3
+                if (pos == 0) {
+                    outRect.left = padding*2
+                    outRect.right = padding
+                } else if (pos == 2){
+                    outRect.left = padding
+                    outRect.right = padding*2
+                }else{
+                    outRect.left = padding
+                    outRect.right = padding
+                }
+                outRect.top = padding*2
 
             }
         })
