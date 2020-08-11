@@ -32,13 +32,14 @@ class ExistingOrderFragment : Fragment() {
             adapter.notifyDataSetChanged()
         })
         adapter = OrderAdapter()
-        list.layoutManager = LinearLayoutManager(context)
-        list.adapter = adapter
+
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        list.layoutManager = LinearLayoutManager(context)
+        list.adapter = adapter
     }
 
     override fun onResume() {

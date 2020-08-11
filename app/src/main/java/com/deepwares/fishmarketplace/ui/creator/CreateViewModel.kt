@@ -17,10 +17,35 @@ class CreateViewModel : ViewModel() {
 
     val species = arrayListOf(
 
-        Species("Carp", R.drawable.ic_asset_3),
-        Species("Sea Bass", R.drawable.ic_asset_5),
-        Species("Trout", R.drawable.ic_asset_6),
-        Species("Mackerel", R.drawable.ic_asset_7),
+        Species("Anchovy", R.drawable.anchovy),
+        Species("Barramundi", R.drawable.barramundi),
+        Species("Base", R.drawable.basa),
+        Species("Bombay Duck", R.drawable.bombay_duck),
+        Species("Ghole", R.drawable.ghole),
+        Species("Grouper", R.drawable.grouper),
+        Species("Kane", R.drawable.kane),
+        Species("Kingfish", R.drawable.kingfish),
+        Species("Mahi Mahi", R.drawable.mahi_mahi),
+        Species("Mullet", R.drawable.mullet),
+        Species("Pearl Spot", R.drawable.pearl_spot),
+        Species("Pomfret", R.drawable.pomfret),
+        Species("Red Snapper", R.drawable.red_snapper),
+        Species("Rohu", R.drawable.rohu),
+        Species("Salmon", R.drawable.salmon),
+        Species("Sea Veral", R.drawable.sea_veral),
+        Species("Seer", R.drawable.seer),
+        Species("Shrimp", R.drawable.shrimp),
+        Species("Snake head murrel", R.drawable.snake_head_murrel),
+        Species("Sole", R.drawable.sole),
+        Species("Tuna", R.drawable.tuna)
+    )
+    /*
+    val species = arrayListOf(
+
+        Species("Carp", R.drawable.anchovy),
+        Species("Sea Bass", R.drawable.bombay_duck),
+        Species("Trout", R.drawable.bombay),
+        Species("Mackerel", R.drawable.baramundi),
         Species("Tuna", R.drawable.ic_asset_8),
         Species("Grouper", R.drawable.ic_asset_9),
         Species("Pomfret", R.drawable.ic_asset_10),
@@ -45,6 +70,8 @@ class CreateViewModel : ViewModel() {
         Species("Bream", R.drawable.ic_asset_29),
         Species("Flounder", R.drawable.ic_asset_30)
     )
+
+     */
 
     private val _species = MutableLiveData<List<Species>>().apply {
         value = species
@@ -85,7 +112,7 @@ class CreateViewModel : ViewModel() {
             Amplify.API.mutate(
                 ModelMutation.create(item),
                 { response ->
-                    Log.d(TAG, "Added Species with id: " + response.data.id)
+                    Log.d(TAG, "Added Species with id: " + response?.data?.id)
                 },
                 { error: ApiException? ->
                     Log.e(TAG, "Create Species failed", error)
