@@ -13,8 +13,8 @@
     <string name="creator_size_small">Small</string>
     <string name="creator_size_medium">Medium</string>
     <string name="creator_size_large">Large</string>
-    <string name="label_weight">Weight</string>
-    <string name="label_price">Price</string>
+    <string name="label_weight">Weight in Kg</string>
+    <string name="label_price">Price in Rs/Kg</string>
     <string name="catch_location">Location Ex. Miramar/Juhu Beach</string>
     <string name="label_catch_time">Catch Details</string>
     <string name="label_sell_time">Sell Details</string>

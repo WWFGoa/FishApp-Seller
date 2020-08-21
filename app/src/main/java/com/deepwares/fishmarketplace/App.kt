@@ -5,6 +5,7 @@ import android.util.Log
 import com.amplifyframework.AmplifyException
 import com.amplifyframework.api.aws.AWSApiPlugin
 import com.amplifyframework.core.Amplify
+import com.amplifyframework.core.Amplify.Auth
 
 
 class App : Application() {
@@ -15,7 +16,7 @@ class App : Application() {
         try {
             Amplify.addPlugin(AWSApiPlugin())
             Amplify.configure(this)
-            Log.i(TAG, "Initialized Amplify")
+            Log.d(TAG, "Initialized Amplify")
         } catch (error: AmplifyException) {
             Log.e(TAG, "Could not initialize Amplify", error)
         }
