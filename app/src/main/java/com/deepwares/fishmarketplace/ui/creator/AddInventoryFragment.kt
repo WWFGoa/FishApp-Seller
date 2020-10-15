@@ -31,7 +31,7 @@ class AddInventoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var species = createViewModel.species[args.image]
+        var species = createViewModel.species.get(args.image)
         species_image.setImageResource(species.image)
 
         createViewModel.inventory = Inventory.Builder()

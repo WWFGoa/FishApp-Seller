@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.TimePicker
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.amplifyframework.datastore.generated.model.CatchSize
 import com.deepwares.fishmarketplace.R
 
@@ -67,6 +69,9 @@ class AddInventoryStepFragment(contentLayoutId: Int) : Fragment(contentLayoutId)
                     createListing = view.findViewById(R.id.create_listing)
                     createListing?.setOnClickListener {
                         createViewModel.createListing()
+                        Toast.makeText(context, R.string.creating_inventory, Toast.LENGTH_LONG)
+                            .show()
+                        findNavController().navigate(R.id.navigation_existing)
                     }
                 }
             }

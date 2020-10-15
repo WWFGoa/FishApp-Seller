@@ -24,7 +24,7 @@
                 app:argType="integer" />
             <argument
                 android:name="name"
-                app:argType="string" />
+                app:argType="integer" />
         </action>
     </fragment>
 
@@ -44,7 +44,7 @@
             app:argType="integer" />
         <argument
             android:name="name"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
 
 </navigation>

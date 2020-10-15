@@ -55,5 +55,8 @@ dependencies {
     implementation 'com.amplifyframework:core:1.1.1'
     implementation 'com.amplifyframework:aws-api:1.1.1'
 
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+
 
 }
