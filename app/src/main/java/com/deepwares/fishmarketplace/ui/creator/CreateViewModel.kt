@@ -22,9 +22,42 @@ class CreateViewModel : ViewModel() {
     private val _species = MutableLiveData<List<Species>>().apply {
         value = species
     }
+
+    val speciesFiltered = ArrayList<Species>().apply { addAll(FishRepository.species) }
+
+    private val _speciesFiltered = MutableLiveData<List<Species>>().apply {
+        value = speciesFiltered
+    }
+
     val speciesLiveData: MutableLiveData<List<Species>> = _species
+    val speciesFilteredLiveData: MutableLiveData<List<Species>> = _speciesFiltered
     var inventory: Inventory.Builder? = null
     var currentSpecies: com.amplifyframework.datastore.generated.model.Species.Builder? = null
+
+    fun filter(name: String?) {
+
+        var list = ArrayList<Species>()
+        if (name.isNullOrEmpty()) {
+            list.addAll(FishRepository.species)
+        } else {
+            FishRepository.species.forEach {
+
+                if (App.INSTANCE.resources.getString(it.name).toLowerCase()
+                        .contains(name.toLowerCase())
+                    || name.toLowerCase().contains(
+                        com.deepwares.fishmarketplace.App.INSTANCE.resources.getString(it.name)
+                            .toLowerCase()
+                    )
+                    || App.INSTANCE.resources.getString(it.name).toLowerCase()
+                        .equals(name.toLowerCase())
+
+                ) {
+                    list.add(it)
+                }
+            }
+        }
+        speciesFilteredLiveData.postValue(list)
+    }
 
     fun createListing() {
         inventory?.let {

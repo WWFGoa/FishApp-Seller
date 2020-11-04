@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,11 +20,13 @@ class CreateFragment : Fragment() {
     private lateinit var createViewModel: CreateViewModel
     private  var speciesSelector: SpeciesSelector? = null
     private lateinit var speciesAdapter: SpeciesAdapter
+    private lateinit var speciesFilteredAdapter: SpeciesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         speciesSelector = activity as SpeciesSelector
         speciesAdapter = SpeciesAdapter(speciesSelector)
+        speciesFilteredAdapter = SpeciesAdapter(speciesSelector)
     }
 
     override fun onCreateView(
@@ -48,6 +51,32 @@ class CreateFragment : Fragment() {
                 speciesAdapter.notifyDataSetChanged()
 
             }
+        })
+
+        createViewModel.speciesFilteredLiveData.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                speciesFilteredAdapter.species.clear()
+                speciesFilteredAdapter.species.addAll(it)
+                speciesFilteredAdapter.notifyDataSetChanged()
+
+            }
+        })
+
+        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                createViewModel.filter(query)
+                list.adapter = speciesFilteredAdapter
+
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                createViewModel.filter(newText)
+                list.adapter = speciesFilteredAdapter
+                return true
+            }
+
         })
 
         val padding = resources.getDimensionPixelSize(R.dimen.padding_standard)

@@ -43,14 +43,14 @@ class SpeciesAdapter(var speciesSelector: SpeciesSelector?) : RecyclerView.Adapt
                 holder.image.resources.getDrawable(R.drawable.species_background_red_border)
             //holder.card.setCardBackgroundColor(holder.image.resources.getColor(R.color.species_background_red))
 
-
         } else if (stat == 4) {
             holder.card.background =
                 holder.image.resources.getDrawable(R.drawable.species_background_grey_border)
             //holder.card.setCardBackgroundColor(holder.image.resources.getColor(R.color.species_background_red))
 
         } else {
-            holder.card.background = null
+            holder.card.background =
+                holder.image.resources.getDrawable(R.drawable.species_background_blue_border)
         }
     }
 }
