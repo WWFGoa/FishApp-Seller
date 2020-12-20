@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import com.amplifyframework.AmplifyException
 import com.amplifyframework.api.aws.AWSApiPlugin
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
 import com.amplifyframework.core.Amplify
 import com.amplifyframework.core.Amplify.Auth
 
@@ -24,6 +25,7 @@ class App : Application() {
         INSTANCE = this
         try {
             Amplify.addPlugin(AWSApiPlugin())
+            Amplify.addPlugin(AWSCognitoAuthPlugin())
             Amplify.configure(this)
             Log.d(TAG, "Initialized Amplify")
         } catch (error: AmplifyException) {

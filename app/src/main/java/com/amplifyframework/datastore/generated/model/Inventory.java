@@ -130,6 +130,24 @@ public final class Inventory implements Model {
       .hashCode();
   }
   
+  @Override
+   public String toString() {
+    return new StringBuilder()
+      .append("Inventory {")
+      .append("id=" + String.valueOf(getId()) + ", ")
+      .append("species=" + String.valueOf(getSpecies()) + ", ")
+      .append("quantity=" + String.valueOf(getQuantity()) + ", ")
+      .append("availableQuantity=" + String.valueOf(getAvailableQuantity()) + ", ")
+      .append("price=" + String.valueOf(getPrice()) + ", ")
+      .append("catchLocation=" + String.valueOf(getCatchLocation()) + ", ")
+      .append("sellLocation=" + String.valueOf(getSellLocation()) + ", ")
+      .append("catchTime=" + String.valueOf(getCatchTime()) + ", ")
+      .append("sellTime=" + String.valueOf(getSellTime()) + ", ")
+      .append("size=" + String.valueOf(getSize()))
+      .append("}")
+      .toString();
+  }
+  
   public static SpeciesStep builder() {
       return new Builder();
   }
@@ -142,7 +160,7 @@ public final class Inventory implements Model {
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
    * @throws IllegalArgumentException Checks that ID is in the proper format
-   **/
+   */
   public static Inventory justId(String id) {
     try {
       UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
@@ -327,7 +345,7 @@ public final class Inventory implements Model {
      * @param id id
      * @return Current Builder instance, for fluent method chaining
      * @throws IllegalArgumentException Checks that ID is in the proper format
-     **/
+     */
     public BuildStep id(String id) throws IllegalArgumentException {
         this.id = id;
         

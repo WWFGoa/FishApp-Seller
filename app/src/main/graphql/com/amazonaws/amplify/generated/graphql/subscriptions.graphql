@@ -1,6 +1,6 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateSpecies {
-  onCreateSpecies {
+subscription OnCreateSpecies($owner: String!) {
+  onCreateSpecies(owner: $owner) {
     id
     name
     minPrice
@@ -9,10 +9,16 @@ subscription OnCreateSpecies {
     maxWeight
     active
     image
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+    owner
   }
 }
-subscription OnUpdateSpecies {
-  onUpdateSpecies {
+subscription OnUpdateSpecies($owner: String!) {
+  onUpdateSpecies(owner: $owner) {
     id
     name
     minPrice
@@ -21,10 +27,16 @@ subscription OnUpdateSpecies {
     maxWeight
     active
     image
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+    owner
   }
 }
-subscription OnDeleteSpecies {
-  onDeleteSpecies {
+subscription OnDeleteSpecies($owner: String!) {
+  onDeleteSpecies(owner: $owner) {
     id
     name
     minPrice
@@ -33,6 +45,12 @@ subscription OnDeleteSpecies {
     maxWeight
     active
     image
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+    owner
   }
 }
 subscription OnCreateInventory {
@@ -47,6 +65,11 @@ subscription OnCreateInventory {
     catchTime
     sellTime
     size
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }
 subscription OnUpdateInventory {
@@ -61,6 +84,11 @@ subscription OnUpdateInventory {
     catchTime
     sellTime
     size
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }
 subscription OnDeleteInventory {
@@ -75,6 +103,11 @@ subscription OnDeleteInventory {
     catchTime
     sellTime
     size
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }
 subscription OnCreateOrder {
@@ -92,7 +125,17 @@ subscription OnCreateOrder {
       catchTime
       sellTime
       size
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }
 subscription OnUpdateOrder {
@@ -110,7 +153,17 @@ subscription OnUpdateOrder {
       catchTime
       sellTime
       size
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }
 subscription OnDeleteOrder {
@@ -128,6 +181,16 @@ subscription OnDeleteOrder {
       catchTime
       sellTime
       size
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }

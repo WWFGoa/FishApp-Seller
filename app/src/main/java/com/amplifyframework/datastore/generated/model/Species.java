@@ -7,7 +7,10 @@ import java.util.Objects;
 
 import androidx.core.util.ObjectsCompat;
 
+import com.amplifyframework.core.model.AuthStrategy;
 import com.amplifyframework.core.model.Model;
+import com.amplifyframework.core.model.ModelOperation;
+import com.amplifyframework.core.model.annotations.AuthRule;
 import com.amplifyframework.core.model.annotations.Index;
 import com.amplifyframework.core.model.annotations.ModelConfig;
 import com.amplifyframework.core.model.annotations.ModelField;
@@ -17,7 +20,9 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 /** This is an auto generated class representing the Species type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Species")
+@ModelConfig(pluralName = "Species", authRules = {
+  @AuthRule(allow = AuthStrategy.OWNER, ownerField = "owner", identityClaim = "cognito:username", operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
+})
 @Index(name = "undefined", fields = {"id","name"})
 public final class Species implements Model {
   public static final QueryField ID = field("id");
@@ -113,6 +118,22 @@ public final class Species implements Model {
       .hashCode();
   }
   
+  @Override
+   public String toString() {
+    return new StringBuilder()
+      .append("Species {")
+      .append("id=" + String.valueOf(getId()) + ", ")
+      .append("name=" + String.valueOf(getName()) + ", ")
+      .append("minPrice=" + String.valueOf(getMinPrice()) + ", ")
+      .append("maxPrice=" + String.valueOf(getMaxPrice()) + ", ")
+      .append("minWeight=" + String.valueOf(getMinWeight()) + ", ")
+      .append("maxWeight=" + String.valueOf(getMaxWeight()) + ", ")
+      .append("active=" + String.valueOf(getActive()) + ", ")
+      .append("image=" + String.valueOf(getImage()))
+      .append("}")
+      .toString();
+  }
+  
   public static NameStep builder() {
       return new Builder();
   }
@@ -125,7 +146,7 @@ public final class Species implements Model {
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
    * @throws IllegalArgumentException Checks that ID is in the proper format
-   **/
+   */
   public static Species justId(String id) {
     try {
       UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
@@ -278,7 +299,7 @@ public final class Species implements Model {
      * @param id id
      * @return Current Builder instance, for fluent method chaining
      * @throws IllegalArgumentException Checks that ID is in the proper format
-     **/
+     */
     public BuildStep id(String id) throws IllegalArgumentException {
         this.id = id;
         

@@ -1,4 +1,36 @@
 # this is an auto generated file. This will be overwritten
+query SyncSpecies(
+  $filter: ModelSpeciesFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncSpecies(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      name
+      minPrice
+      maxPrice
+      minWeight
+      maxWeight
+      active
+      image
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+    startedAt
+  }
+}
 query GetSpecies($id: ID!, $name: String!) {
   getSpecies(id: $id, name: $name) {
     id
@@ -9,6 +41,12 @@ query GetSpecies($id: ID!, $name: String!) {
     maxWeight
     active
     image
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+    owner
   }
 }
 query ListSpeciess(
@@ -36,8 +74,48 @@ query ListSpeciess(
       maxWeight
       active
       image
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      owner
     }
     nextToken
+    startedAt
+  }
+}
+query SyncInventories(
+  $filter: ModelInventoryFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncInventories(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      species
+      quantity
+      availableQuantity
+      price
+      catchLocation
+      sellLocation
+      catchTime
+      sellTime
+      size
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
   }
 }
 query GetInventory($id: ID!) {
@@ -52,6 +130,11 @@ query GetInventory($id: ID!) {
     catchTime
     sellTime
     size
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }
 query ListInventorys(
@@ -71,8 +154,56 @@ query ListInventorys(
       catchTime
       sellTime
       size
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
     }
     nextToken
+    startedAt
+  }
+}
+query SyncOrders(
+  $filter: ModelOrderFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncOrders(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      quantity
+      inventory {
+        id
+        species
+        quantity
+        availableQuantity
+        price
+        catchLocation
+        sellLocation
+        catchTime
+        sellTime
+        size
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
   }
 }
 query GetOrder($id: ID!) {
@@ -90,7 +221,17 @@ query GetOrder($id: ID!) {
       catchTime
       sellTime
       size
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }
 query ListOrders(
@@ -113,8 +254,19 @@ query ListOrders(
         catchTime
         sellTime
         size
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
     }
     nextToken
+    startedAt
   }
 }

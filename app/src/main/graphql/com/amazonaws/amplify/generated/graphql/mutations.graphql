@@ -12,6 +12,12 @@ mutation CreateSpecies(
     maxWeight
     active
     image
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+    owner
   }
 }
 mutation UpdateSpecies(
@@ -27,6 +33,12 @@ mutation UpdateSpecies(
     maxWeight
     active
     image
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+    owner
   }
 }
 mutation DeleteSpecies(
@@ -42,6 +54,12 @@ mutation DeleteSpecies(
     maxWeight
     active
     image
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+    owner
   }
 }
 mutation CreateInventory(
@@ -59,6 +77,11 @@ mutation CreateInventory(
     catchTime
     sellTime
     size
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }
 mutation UpdateInventory(
@@ -76,6 +99,11 @@ mutation UpdateInventory(
     catchTime
     sellTime
     size
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }
 mutation DeleteInventory(
@@ -93,6 +121,11 @@ mutation DeleteInventory(
     catchTime
     sellTime
     size
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }
 mutation CreateOrder(
@@ -113,7 +146,17 @@ mutation CreateOrder(
       catchTime
       sellTime
       size
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }
 mutation UpdateOrder(
@@ -134,7 +177,17 @@ mutation UpdateOrder(
       catchTime
       sellTime
       size
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }
 mutation DeleteOrder(
@@ -155,6 +208,16 @@ mutation DeleteOrder(
       catchTime
       sellTime
       size
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
   }
 }

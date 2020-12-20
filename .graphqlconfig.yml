@@ -2,7 +2,7 @@ projects:
   fishmarketplace:
     schemaPath: app/src/main/graphql/schema.json
     includes:
-      - app/src/main/graphql/**/*.graphql
+      - 'Y'
     excludes:
       - ./amplify/**
     extensions:
@@ -10,6 +10,3 @@ projects:
         codeGenTarget: ''
         generatedFileName: ''
         docsFilePath: app/src/main/graphql/com/amazonaws/amplify/generated/graphql
-extensions:
-  amplify:
-    version: 3

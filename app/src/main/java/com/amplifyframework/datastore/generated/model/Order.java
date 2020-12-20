@@ -58,6 +58,16 @@ public final class Order implements Model {
       .hashCode();
   }
   
+  @Override
+   public String toString() {
+    return new StringBuilder()
+      .append("Order {")
+      .append("id=" + String.valueOf(getId()) + ", ")
+      .append("quantity=" + String.valueOf(getQuantity()))
+      .append("}")
+      .toString();
+  }
+  
   public static QuantityStep builder() {
       return new Builder();
   }
@@ -70,7 +80,7 @@ public final class Order implements Model {
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
    * @throws IllegalArgumentException Checks that ID is in the proper format
-   **/
+   */
   public static Order justId(String id) {
     try {
       UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
@@ -127,7 +137,7 @@ public final class Order implements Model {
      * @param id id
      * @return Current Builder instance, for fluent method chaining
      * @throws IllegalArgumentException Checks that ID is in the proper format
-     **/
+     */
     public BuildStep id(String id) throws IllegalArgumentException {
         this.id = id;
         

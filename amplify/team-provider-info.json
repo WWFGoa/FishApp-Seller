@@ -1,15 +1,20 @@
 {
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-fishmarketplace-dev-43359-authRole",
-            "UnauthRoleArn": "arn:aws:iam::770138636768:role/amplify-fishmarketplace-dev-43359-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::770138636768:role/amplify-fishmarketplace-dev-43359-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-fishmarketplace-dev-43359-deployment",
-            "UnauthRoleName": "amplify-fishmarketplace-dev-43359-unauthRole",
-            "StackName": "amplify-fishmarketplace-dev-43359",
-            "StackId": "arn:aws:cloudformation:us-east-1:770138636768:stack/amplify-fishmarketplace-dev-43359/792a0cb0-cba6-11ea-9d26-0a3fc8cbcb75",
-            "AmplifyAppId": "d260i3nuobclv0"
-        }
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fishmarketplace-dev-144826-authRole",
+      "UnauthRoleArn": "arn:aws:iam::770138636768:role/amplify-fishmarketplace-dev-144826-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::770138636768:role/amplify-fishmarketplace-dev-144826-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-fishmarketplace-dev-144826-deployment",
+      "UnauthRoleName": "amplify-fishmarketplace-dev-144826-unauthRole",
+      "StackName": "amplify-fishmarketplace-dev-144826",
+      "StackId": "arn:aws:cloudformation:us-east-1:770138636768:stack/amplify-fishmarketplace-dev-144826/88fa75e0-226c-11eb-9720-1221171ce649",
+      "AmplifyAppId": "d1k6zur2x8z60z"
+    },
+    "categories": {
+      "auth": {
+        "fishmarketplace213f2a28": {}
+      }
     }
+  }
 }

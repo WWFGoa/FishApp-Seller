@@ -182,4 +182,33 @@
 
     <string name="status_no_threat">No Threat</string>
     <string name="status_banned">Prohibited</string>
+
+
+
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_username">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_confirm_password">Password</string>
+    <string name="prompt_name">Name</string>
+    <string name="prompt_phone">Phone number</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="user_not_exists">User doesn\'t exist. Please create a new account</string>
+    <string name="wrong_password">The password doesn\'t match the username</string>
+    <string name="invalid_password">Password must be at least 8 characters</string>
+    <string name="confirm_mismatch_password">Password doesn\'t match confirm password</string>
+    <string name="invalid_phone">Not a valid phone number</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="register_failed">"Sign-up failed"</string>
+
+
+    <string name="action_register">Create Account</string>
+    <string name="register_form_error">Please enter valid values for signing up</string>
+    <string name="login_form_error">Please enter valid values for Login</string>
+    <string name="turn_location_setting_on">Please turn on the location setting on the phone</string>
+
+
+    <string name="user_does_not_exist">New user. Continuing to create account!</string>
 </resources>
