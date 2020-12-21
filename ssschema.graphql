@@ -3,22 +3,13 @@ Small,
 Medium,
 Large
 }
-type Species
-@model
-@auth(rules: [{ allow: owner }])
-@key(fields: ["id","name"])
-{
-  id: ID!
-  name: String!
-  minPrice: Int!
-  maxPrice: Int!
-  minWeight: Int!
-  maxWeight: Int!
-  active: Boolean!
-  image:Int!
-}
 
-type Inventory @model {
+type Inventory @model
+ @auth(rules: [
+       {allow: groups, groups: ["sellers"], mutations: [create, update, delete], , queries: [get, list]},
+       {allow: groups, groups: ["buyers"], mutations: [ update], queries: [get, list]}
+     ])
+ {
   id: ID!
   species: Int!
   quantity:Int!
@@ -29,9 +20,19 @@ type Inventory @model {
   catchTime:String!
   sellTime:String!
   size:CatchSize!
+  createdAt: AWSDateTime # <-- added
+  updatedAt: AWSDateTime # <-- added
+  orders: [Order] @connection(name: "InventoryOrders")
+
 }
-type Order @model {
+type Order @model
+  @auth(rules: [
+        {allow: groups, groups: ["buyers"], mutations: [create, update, delete], , queries: [get, list]},
+        {allow: groups, groups: ["sellers"], mutations: null, queries: [get, list]}
+      ]){
   id: ID!
   quantity:Int!
-  inventory:Inventory!
+  inventory:Inventory @connection(name: "InventoryOrders")
+  createdAt: AWSDateTime # <-- added
+  updatedAt: AWSDateTime # <-- added
 }
