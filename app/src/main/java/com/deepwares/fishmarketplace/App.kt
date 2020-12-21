@@ -21,15 +21,18 @@ class App : Application() {
     }
 
     override fun onCreate() {
-        super.onCreate()
         INSTANCE = this
         try {
             Amplify.addPlugin(AWSApiPlugin())
             Amplify.addPlugin(AWSCognitoAuthPlugin())
             Amplify.configure(this)
+           // Amplify.Auth.initialize(this)
+          //  Amplify.API.initialize(this)
             Log.d(TAG, "Initialized Amplify")
         } catch (error: AmplifyException) {
             Log.e(TAG, "Could not initialize Amplify", error)
         }
+        super.onCreate()
+
     }
 }

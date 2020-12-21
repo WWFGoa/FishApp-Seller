@@ -13,6 +13,7 @@ class HomeViewModel : ViewModel() {
     val items = MutableLiveData<List<Inventory>>()
     val TAG = HomeViewModel::class.java.name
     fun fetch() {
+
         Amplify.API.query(
             ModelQuery.list(Inventory::class.java),
             { response ->

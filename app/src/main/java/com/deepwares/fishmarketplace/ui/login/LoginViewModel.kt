@@ -36,58 +36,51 @@ class LoginViewModel() : ViewModel() {
     val loginResult: LiveData<LoginResult> = _loginResult
 
     fun login(username: String, password: String) {
-        // can be launched in a separate asynchronous job
 
-        //val result = loginRepository.login(username, password)
-        /*
-        if (result is Result.Success) {
-            _loginResult.value =
-                LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-        } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
-        }
+        Amplify.Auth.signIn(
+            username,
+            password,
+            { result ->
+                Log.i(
+                    "AuthQuickstart",
+                    if (result.isSignInComplete) "Sign in succeeded" else "Sign in not complete"
+                )
 
-         */
-        //AWSMobileClient.getInstance().
-        AWSMobileClient.getInstance()
-            .signIn(username, password, HashMap(), object : Callback<SignInResult> {
-                override fun onResult(result: SignInResult?) {
+                val currentUser = Amplify.Auth.currentUser
+
+                if (result.isSignInComplete) {
                     Log.d(TAG, "LOGIN - onResult :  $result | Fetching user attributes")
-                    val map = AWSMobileClient.getInstance().userAttributes
-                    val id = map["sub"]
-                    Preferences.setUserId(App.INSTANCE, id)
+                    Preferences.setUserId(App.INSTANCE, currentUser.userId)
                     Log.d(
                         TAG,
-                        "user attributes | name :   ${map["name"]} | username :   ${map["username"]} | email :   ${map["email"]}"
+                        "user attributes | name :   ${currentUser.username}"
                     )
                     //result?.
-                    _loginResult.postValue(LoginResult(success = LoggedInUserView(displayName = map["name"]!!)))
-
+                    _loginResult.postValue(LoginResult(success = LoggedInUserView(displayName = currentUser.username!!)))
                 }
 
-                override fun onError(e: Exception?) {
+            },
+            { e ->
+                Log.e("AuthQuickstart", e.toString(), e)
+                Log.e(TAG, "LOGIN - onError | Could not login successfully", e)
+                var loginError = LoginError.Unknown
+                if (e is UserNotFoundException || e.cause is UserNotFoundException) {
+                    loginError = LoginError.UserNotFound
+                    loginForm.postValue(false)
+                } else if (e is InvalidPasswordException || e.cause is InvalidPasswordException) {
+                    loginError = LoginError.PasswordMismatch
+                    _loginForm.value =
+                        LoginFormState(passwordError = R.string.invalid_password)
+                }
 
-                    Log.e(TAG, "LOGIN - onError | Could not login successfully", e)
-                    var loginError = LoginError.Unknown
-                    e?.let {
-                        if (e is UserNotFoundException) {
-                            loginError = LoginError.UserNotFound
-                            loginForm.postValue(false)
-                        } else if (e is InvalidPasswordException) {
-                            loginError = LoginError.PasswordMismatch
-                            _loginForm.value =
-                                LoginFormState(passwordError = R.string.invalid_password)
-                        }
-                    }
-                    _loginResult.postValue(
-                        LoginResult(
-                            error = R.string.login_failed,
-                            errorType = loginError
-                        )
+                _loginResult.postValue(
+                    LoginResult(
+                        error = R.string.login_failed,
+                        errorType = loginError
                     )
-                }
-            })
-
+                )
+            }
+        )
     }
 
 
@@ -124,65 +117,46 @@ class LoginViewModel() : ViewModel() {
 
 
     fun register(phone: String, password: String, name: String) {
-        val username = "+91" + phone
-        val map = HashMap<String, String>()
-        map.put("name", name)
-        map.put("phone_number", username)
-        map.put("email", "deepakindia86@gmail.com")
-        val attributes: ArrayList<AuthUserAttribute> = ArrayList()
-        attributes.add(AuthUserAttribute(AuthUserAttributeKey.name(), name))
-        attributes.add(
-            AuthUserAttribute(AuthUserAttributeKey.phoneNumber(), username)
+        val username = "+91$phone"
+
+
+        Amplify.Auth.signUp(
+            username,
+            password,
+            AuthSignUpOptions.builder().userAttribute(AuthUserAttributeKey.name(), name)
+                .userAttribute(AuthUserAttributeKey.phoneNumber(), username)
+                //.userAttribute(AuthUserAttributeKey.custom("group"), "seller")
+                .build(),
+            { result ->
+                Log.i("AuthQuickStart", "Result: $result")
+                result.user?.let {
+                    login(username, password)
+                    Preferences.setUserId(App.INSTANCE, it.userId)
+                }
+
+            },
+            { e ->
+                Log.e(TAG, "REGISTER - onError | Could not login successfully", e)
+                var loginError = LoginError.Unknown
+                var errorToast = R.string.register_failed
+                if (e is UserNotFoundException || e.cause is UserNotFoundException) {
+                    loginError = LoginError.UserNotFound
+                    errorToast = R.string.user_does_not_exist
+                    loginForm.postValue(false)
+                } else if (e is InvalidPasswordException || e.cause is InvalidPasswordException) {
+                    loginError = LoginError.PasswordMismatch
+                    _loginForm.value =
+                        LoginFormState(passwordError = R.string.invalid_password)
+                }
+
+                _loginResult.postValue(
+                    LoginResult(
+                        error = errorToast,
+                        errorType = loginError
+                    )
+                )
+            }
         )
-
-
-        AWSMobileClient.getInstance()
-            .signUp(username, password, map, null, object : Callback<SignUpResult> {
-                override fun onResult(result: SignUpResult?) {
-                    Log.d(TAG, "REGISTER - onResult :  $result | Fetching user attributes")
-
-                    result?.userSub?.let {
-                        login(username, password)
-                        Preferences.setUserId(App.INSTANCE, it)
-                    }
-                    /*
-                    val map = AWSMobileClient.getInstance().userAttributes
-
-
-                    Log.d(
-                        TAG,
-                        "user attributes | name :   ${map["name"]} | username :   ${map["username"]} | email :   ${map["email"]}"
-                    )
-                    //result?.
-                    _loginResult.postValue(LoginResult(success = LoggedInUserView(displayName = map["name"]!!)))
-                    */
-                }
-
-                override fun onError(e: Exception?) {
-
-                    Log.e(TAG, "REGISTER - onError | Could not login successfully", e)
-                    var loginError = LoginError.Unknown
-                    var errorToast = R.string.register_failed
-                    e?.let {
-                        if (e is UserNotFoundException) {
-                            loginError = LoginError.UserNotFound
-                            errorToast = R.string.user_does_not_exist
-                            loginForm.postValue(false)
-                        } else if (e is InvalidPasswordException) {
-                            loginError = LoginError.PasswordMismatch
-                            _loginForm.value =
-                                LoginFormState(passwordError = R.string.invalid_password)
-                        }
-                    }
-                    _loginResult.postValue(
-                        LoginResult(
-                            error = errorToast,
-                            errorType = loginError
-                        )
-                    )
-                }
-            })
-
     }
 
     // A placeholder username validation check

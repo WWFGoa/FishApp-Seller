@@ -116,7 +116,8 @@ class LoginActivity : AppCompatActivity() {
                             loginViewModel.register(
                                 phone.text.toString(),
                                 password.text.toString(),
-                                name.text.toString())
+                                name.text.toString()
+                            )
                     }
                 false
             }
@@ -125,7 +126,7 @@ class LoginActivity : AppCompatActivity() {
         login.setOnClickListener {
             if (loginViewModel.loginFormState.value != null && loginViewModel.loginFormState.value!!.isDataValid) {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(phone.text.toString(), password.text.toString())
+                loginViewModel.login("+91" + phone.text.toString(), password.text.toString())
             } else {
                 Toast.makeText(this, R.string.login_form_error, Toast.LENGTH_LONG).show()
             }
@@ -136,7 +137,8 @@ class LoginActivity : AppCompatActivity() {
                 loginViewModel.register(
                     phone.text.toString(),
                     password.text.toString(),
-                    name.text.toString())
+                    name.text.toString()
+                )
             } else {
                 Toast.makeText(this, R.string.register_form_error, Toast.LENGTH_LONG).show()
             }
@@ -149,7 +151,8 @@ class LoginActivity : AppCompatActivity() {
             phone.text.toString(),
             password.text.toString(),
             confirmPassword.text.toString(),
-            name.text.toString())
+            name.text.toString()
+        )
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {

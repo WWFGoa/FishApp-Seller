@@ -83,12 +83,12 @@ class AddInventoryStepFragment(contentLayoutId: Int) : Fragment(contentLayoutId)
         creatorStep?.let {
             when (creatorStep) {
                 CreatorSteps.SIZE -> {
-                    createViewModel.inventory?.size(CatchSize.Medium)
+                    createViewModel.inventory?.size(CatchSize.MEDIUM)
 
                 }
                 CreatorSteps.WEIGHT -> {
-                    createViewModel.inventory?.quantity(weightPicker?.value)
-                    createViewModel.inventory?.availableQuantity(weightPicker?.value)
+                    createViewModel.inventory?.quantity(weightPicker?.value!!.toFloat())
+                    createViewModel.inventory?.availableQuantity(weightPicker?.value!!.toFloat())
                 }
                 CreatorSteps.PRICE -> {
                     createViewModel.inventory?.price(pricePicker?.value)

@@ -39,8 +39,21 @@ class SplashActivity : AppCompatActivity() {
 
 
     fun checkLogin() {
+        Amplify.Auth.fetchAuthSession(
+            { result ->
+                Log.i("AmplifyQuickstart", result.toString())
 
-
+                if (!result.isSignedIn) {
+                    Log.i(TAG, "ApiQuickstart | User not signed in. Go to login")
+                    showLogin()
+                } else {
+                    Log.i(TAG, "ApiQuickstart | User Logged in. Go to Main")
+                    goToMain()
+                }
+            },
+            { error -> Log.e("AmplifyQuickstart", error.toString()) }
+        )
+        /*
         AWSMobileClient.getInstance()
             .initialize(applicationContext, object : Callback<UserStateDetails> {
                 override fun onResult(userStateDetails: UserStateDetails) {
@@ -73,6 +86,8 @@ class SplashActivity : AppCompatActivity() {
                 }
             })
 
+
+         */
     }
 
     private fun goToMain() {
