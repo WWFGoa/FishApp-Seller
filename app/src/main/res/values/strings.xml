@@ -4,6 +4,8 @@
     <string name="order_new">New</string>
     <string name="order_past">Past</string>
 
+    <string name="orders">Orders</string>
+
     <string name="order_existing_label">Live Inventory</string>
     <string name="order_new_label">Create new Listing</string>
     <string name="order_past_label">Past Inventory</string>

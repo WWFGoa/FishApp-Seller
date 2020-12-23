@@ -30,8 +30,8 @@
 
     <fragment
         android:id="@+id/navigation_past"
-        android:name="com.deepwares.fishmarketplace.ui.notifications.PastOrderFragment"
-        android:label="@string/order_past_label"
+        android:name="com.deepwares.fishmarketplace.ui.notifications.OrdersFragment"
+        android:label="Current Orders"
         tools:layout="@layout/fragment_past" />
 
     <fragment

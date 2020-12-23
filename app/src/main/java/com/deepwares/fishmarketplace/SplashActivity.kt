@@ -53,41 +53,6 @@ class SplashActivity : AppCompatActivity() {
             },
             { error -> Log.e("AmplifyQuickstart", error.toString()) }
         )
-        /*
-        AWSMobileClient.getInstance()
-            .initialize(applicationContext, object : Callback<UserStateDetails> {
-                override fun onResult(userStateDetails: UserStateDetails) {
-                    if (!AWSMobileClient.getInstance().isSignedIn) {
-                        AWSMobileClient.getInstance().signOut()
-                        showLogin()
-                        return
-                    }
-                    when (userStateDetails.userState) {
-                        UserState.SIGNED_IN -> runOnUiThread {
-                            Log.i(TAG, "ApiQuickstart | All set and ready to go!")
-                            //initReports()
-                            goToMain()
-                            return@runOnUiThread
-                        }
-                        UserState.SIGNED_OUT -> runOnUiThread {
-                            showLogin()
-                            return@runOnUiThread
-                        }
-                        else -> {
-                            AWSMobileClient.getInstance().signOut()
-                            showLogin()
-                            return
-                        }
-                    }
-                }
-
-                override fun onError(e: Exception) {
-                    Log.e(TAG, e.toString())
-                }
-            })
-
-
-         */
     }
 
     private fun goToMain() {

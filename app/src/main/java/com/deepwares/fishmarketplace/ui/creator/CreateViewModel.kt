@@ -62,6 +62,8 @@ class CreateViewModel : ViewModel() {
     fun createListing() {
         inventory?.let {
 
+            val user = Amplify.Auth.currentUser
+            it.contact(user.username + " "+user.userId)
             val item = it.build()
             Amplify.API.mutate(
                 ModelMutation.create(item),
@@ -80,6 +82,7 @@ class CreateViewModel : ViewModel() {
 
     fun createSpecies(species: Species, image: Int) {
         currentSpecies?.let {
+            val user = Amplify.Auth.currentUser
             it.active(true)
             it.maxPrice(App.INSTANCE.resources.getInteger(species.maxPrice))
             it.minPrice(App.INSTANCE.resources.getInteger(species.minPrice))
@@ -87,6 +90,7 @@ class CreateViewModel : ViewModel() {
             it.minWeight(1)
             it.image(image)
             it.name(App.INSTANCE.getString(species.name))
+
             val item = it.build()
             Amplify.API.mutate(
                 ModelMutation.create(item),
