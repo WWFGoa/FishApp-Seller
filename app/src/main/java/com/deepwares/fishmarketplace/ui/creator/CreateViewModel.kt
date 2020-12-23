@@ -63,7 +63,7 @@ class CreateViewModel : ViewModel() {
         inventory?.let {
 
             val user = Amplify.Auth.currentUser
-            it.contact(user.username + " "+user.userId)
+            it.contact(user.username)
             val item = it.build()
             Amplify.API.mutate(
                 ModelMutation.create(item),
