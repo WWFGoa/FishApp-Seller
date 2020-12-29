@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.amplifyframework.datastore.generated.model.Inventory
+import com.deepwares.fishmarketplace.App
 import com.deepwares.fishmarketplace.R
 import com.deepwares.fishmarketplace.model.FishRepository
 import com.deepwares.fishmarketplace.model.Species
@@ -26,9 +27,17 @@ class OrderAdapter : RecyclerView.Adapter<OrderVH>() {
         val spec =
             FishRepository.species[if (item.species >= FishRepository.species.size) 0 else item.species]//item.species
         holder.image.setImageResource(spec.image)
-        holder.cost.setText(item.price.toString())
-        holder.quantity.setText(item.availableQuantity.toString())
         holder.name.setText(spec.name)
+
+        holder.cost.setText(
+            App.INSTANCE.getString(R.string.price_in_kg, item.price.toString())
+        )
+        holder.quantity.setText(
+            App.INSTANCE.getString(
+                R.string.qty_in_kg,
+                item.availableQuantity.toString()
+            )
+        )
 
     }
 
