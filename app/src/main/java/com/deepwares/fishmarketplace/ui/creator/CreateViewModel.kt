@@ -5,7 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.amplifyframework.api.ApiException
 import com.amplifyframework.api.graphql.model.ModelMutation
+import com.amplifyframework.auth.AuthException
+import com.amplifyframework.auth.AuthUserAttribute
+import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.core.Amplify
+import com.amplifyframework.core.Consumer
 import com.amplifyframework.datastore.generated.model.Inventory
 import com.deepwares.fishmarketplace.App
 import com.deepwares.fishmarketplace.R
@@ -34,6 +38,8 @@ class CreateViewModel : ViewModel() {
     var inventory: Inventory.Builder? = null
     var currentSpecies: com.amplifyframework.datastore.generated.model.Species.Builder? = null
 
+    var userName: String? = null
+
     fun filter(name: String?) {
 
         var list = ArrayList<Species>()
@@ -60,10 +66,28 @@ class CreateViewModel : ViewModel() {
     }
 
     fun createListing() {
+        if (userName == null) {
+            Amplify.Auth.fetchUserAttributes({ list ->
+                val name = list.find { it.key == AuthUserAttributeKey.name() }
+                userName = name?.value
+                if (name == null) {
+                    userName = "Seller"
+
+                }
+                createListingInternal()
+            }, {})
+        } else {
+            createListingInternal()
+        }
+    }
+
+    fun createListingInternal() {
         inventory?.let {
 
             val user = Amplify.Auth.currentUser
             it.contact(user.username)
+            it.name(userName)
+            it.userId(user.userId)
             val item = it.build()
             Amplify.API.mutate(
                 ModelMutation.create(item),
@@ -101,8 +125,6 @@ class CreateViewModel : ViewModel() {
                     Log.e(TAG, "Create Species failed", error)
                 }
             )
-
-
         }
     }
 }
