@@ -48,6 +48,14 @@ class OrdersFragment : Fragment() {
         ordersViewModel.fetch()
     }
 
+    fun contact(contact: String) {
+        val contactUri = Uri.parse("tel:${contact}")
+        val contactIntent = Intent(Intent.ACTION_DIAL, contactUri)
+        contactIntent.setData(contactUri)
+        contactIntent.resolveActivity(requireContext()!!.packageManager)?.let {
+            startActivity(contactIntent)
+        }
+    }
 
     fun launchMaps(address: String) {
         val gmmIntentUri = Uri.parse("geo:0,0?q=${address}")

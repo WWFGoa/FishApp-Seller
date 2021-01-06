@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/species_image"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="128dp"
         android:layout_margin="@dimen/padding_triple"
         app:layout_constraintBottom_toTopOf="@id/pager"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -24,22 +24,21 @@
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/species_image" />
 
     <androidx.cardview.widget.CardView
-        android:visibility="gone"
         android:id="@+id/card"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="@dimen/padding_triple"
+        android:visibility="gone"
         app:cardCornerRadius="@dimen/padding_double"
         app:cardElevation="@dimen/padding_standard"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 

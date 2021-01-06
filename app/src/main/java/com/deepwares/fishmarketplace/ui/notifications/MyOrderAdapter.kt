@@ -17,18 +17,10 @@ class MyOrderAdapter(var fragment: OrdersFragment?) : RecyclerView.Adapter<MyOrd
             MyOrderVH(
                 LayoutInflater.from(parent.context).inflate(R.layout.my_order_item, parent, false)
             )
-        vh.directions.setOnClickListener {
+        vh.contact.setOnClickListener {
             val item = items[vh.adapterPosition]
+            fragment?.contact(item.contact)
 
-            val location = item.inventory.sellLocation
-            // fragment?.launchMaps(location)
-
-        }
-        vh.itemView.setOnClickListener {
-            val item = items[vh.adapterPosition]
-
-            val location = item.inventory.sellLocation
-            //   fragment?.launchMaps(location)
         }
         return vh
 
@@ -52,12 +44,12 @@ class MyOrderAdapter(var fragment: OrdersFragment?) : RecyclerView.Adapter<MyOrd
         holder.quantity.setText(
             App.INSTANCE.getString(
                 R.string.qty_in_kg,
-                item.availableQuantity.toString()
+                order.quantity.toString()
             )
         )
-        holder.buyer.text = item.name
+        holder.buyer.text = item.contact
         holder.name.setText(species.name)
-
+        holder.sizeType.setText("(" + item.size.name + ")")
     }
 
 }

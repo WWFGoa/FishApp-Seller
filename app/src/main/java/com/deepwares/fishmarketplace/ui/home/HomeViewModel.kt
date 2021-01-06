@@ -19,7 +19,10 @@ class HomeViewModel : ViewModel() {
             { response ->
                 response?.data?.let {
                     val newitems = ArrayList<Inventory>()
-                    newitems.addAll(it)
+                    val filter = it.filter { it.userId == Amplify.Auth.currentUser.userId }
+                    if(!filter.isNullOrEmpty()){
+                        newitems.addAll(filter)
+                    }
                     items.postValue(newitems)
 
                 }

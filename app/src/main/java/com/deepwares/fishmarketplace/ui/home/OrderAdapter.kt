@@ -39,6 +39,8 @@ class OrderAdapter : RecyclerView.Adapter<OrderVH>() {
             )
         )
 
+        holder.size.text = item.size.name
+
     }
 
 }

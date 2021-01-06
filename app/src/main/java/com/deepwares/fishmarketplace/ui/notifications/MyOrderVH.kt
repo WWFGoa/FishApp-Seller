@@ -11,9 +11,12 @@ class MyOrderVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     val image = itemView.findViewById<ImageView>(R.id.image)
     val name = itemView.findViewById<TextView>(R.id.name)
+    val sizeType = itemView.findViewById<TextView>(R.id.size_type)
     val quantity = itemView.findViewById<TextView>(R.id.quantity)
     val cost = itemView.findViewById<TextView>(R.id.cost)
-    val directions:Button = itemView.findViewById(R.id.directions)
+    val contact:Button = itemView.findViewById(R.id.contact)
+
     val buyer:TextView = itemView.findViewById(R.id.seller)
+
 
 }

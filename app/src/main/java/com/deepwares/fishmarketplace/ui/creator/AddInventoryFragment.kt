@@ -18,6 +18,7 @@ class AddInventoryFragment : Fragment() {
 
     val args: AddInventoryFragmentArgs by navArgs()
     private lateinit var createViewModel: CreateViewModel
+    lateinit var currentSpecies: com.deepwares.fishmarketplace.model.Species
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,21 +32,27 @@ class AddInventoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var species = createViewModel.species.get(args.image)
-        species_image.setImageResource(species.image)
+        currentSpecies = createViewModel.species.get(args.image)
+        species_image.setImageResource(currentSpecies.image)
 
         createViewModel.inventory = Inventory.Builder()
         createViewModel.currentSpecies = Species.Builder()
 
 
-        createViewModel.createSpecies(species, args.image)
+        createViewModel.createSpecies(currentSpecies, args.image)
         createViewModel.inventory!!.species(args.image)
 
         pager.adapter = CreatorPagerAdapter(
             childFragmentManager,
             FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
         )
+
         //species_image.setImageResource(args.image)
+    }
+
+
+    fun getSpecies(): com.deepwares.fishmarketplace.model.Species {
+        return currentSpecies
     }
 
     override fun onDestroyView() {

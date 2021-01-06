@@ -19,12 +19,13 @@
         app:queryBackground="@null"
         app:queryHint="@string/search_hint" />
 
+
     <TextView
         android:id="@+id/legend_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_double"
-        android:text="Endangered"
+        android:text="Depleted"
         android:textColor="@color/species_background_red"
         android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
@@ -37,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_double"
-        android:text="Vulnerable"
+        android:text="Declining"
         android:textColor="@color/species_background_yellow"
         android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
@@ -50,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_double"
-        android:text="Least Concern"
+        android:text="Abundant"
         android:textColor="@color/species_background_green"
         android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
@@ -77,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_double"
-        android:text="@string/status_no_threat"
+        android:text="Not a major fishery"
         android:textColor="@color/species_background_blue"
         android:textSize="@dimen/large_text_size"
         android:textStyle="bold"

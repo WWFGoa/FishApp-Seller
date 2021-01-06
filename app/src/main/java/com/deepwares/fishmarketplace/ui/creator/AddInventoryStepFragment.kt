@@ -49,13 +49,24 @@ class AddInventoryStepFragment(contentLayoutId: Int) : Fragment(contentLayoutId)
                 }
                 CreatorSteps.WEIGHT -> {
                     weightPicker = view.findViewById(R.id.weight_picker)
+
                     weightPicker!!.maxValue = 50
-                    weightPicker!!.minValue = 10
+                    weightPicker!!.minValue = 1
                 }
                 CreatorSteps.PRICE -> {
                     pricePicker = view.findViewById(R.id.price_picker)
-                    pricePicker!!.maxValue = 250
-                    pricePicker!!.minValue = 100
+                    val fragment = parentFragment
+                    if (parentFragment is AddInventoryFragment) {
+
+                        val inventoryFragment = parentFragment as AddInventoryFragment
+                        val spec = inventoryFragment.getSpecies()
+                        pricePicker!!.maxValue = resources.getInteger(spec.maxPrice)
+                        pricePicker!!.minValue = resources.getInteger(spec.minPrice)
+                    } else {
+
+                        pricePicker!!.maxValue = 250
+                        pricePicker!!.minValue = 100
+                    }
                 }
                 CreatorSteps.CATCH_TIME -> {
                     catchLocation = view.findViewById(R.id.catch_location)

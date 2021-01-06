@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.deepwares.fishmarketplace.App
 import com.deepwares.fishmarketplace.R
 import com.deepwares.fishmarketplace.interfaces.SpeciesSelector
+import com.deepwares.fishmarketplace.model.FishRepository
 import com.deepwares.fishmarketplace.model.Species
 
 class SpeciesAdapter(var speciesSelector: SpeciesSelector?) : RecyclerView.Adapter<SpeciesVH>() {
@@ -15,7 +16,8 @@ class SpeciesAdapter(var speciesSelector: SpeciesSelector?) : RecyclerView.Adapt
         val vh = SpeciesVH(view)
         vh.itemView.setOnClickListener {
             val item = species[vh.adapterPosition]
-            speciesSelector?.selectSpecies(item, vh.adapterPosition)
+            val speciesPos = FishRepository.species.indexOf(item)
+            speciesSelector?.selectSpecies(item, speciesPos)
         }
         return vh
 

@@ -40,7 +40,7 @@
 
 
     <color name="species_background_green">#50FF33</color>
-    <color name="species_background_yellow">#FAFF33</color>
+    <color name="species_background_yellow">#FF8C00</color>
     <color name="species_background_red">#C70039</color>
     <color name="species_background_grey">#585858</color>
     <color name="species_background_blue">#1E90FF</color>
