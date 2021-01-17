@@ -6,7 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.amplifyframework.api.graphql.model.ModelQuery
 import com.amplifyframework.core.Amplify
+import com.amplifyframework.datastore.generated.model.Inventory
 import com.amplifyframework.datastore.generated.model.Order
+import com.amplifyframework.datastore.generated.model.Order.INVENTORY
+import com.google.android.gms.auth.api.Auth
 
 class OrdersViewModel : ViewModel() {
 
@@ -19,15 +22,21 @@ class OrdersViewModel : ViewModel() {
     val items = MutableLiveData<List<Order>>()
     val TAG = OrdersViewModel::class.java.name
     fun fetch() {
-
         Amplify.API.query(
-            ModelQuery.list(Order::class.java),
+            ModelQuery.list(
+                Order::class.java
+                //, Inventory.USER_ID.eq(Amplify.Auth.currentUser.userId)
+            ),
             { response ->
+                val newitems = ArrayList<Order>()
                 response?.data?.let {
-                    val newitems = ArrayList<Order>()
-                    newitems.addAll(it)
-                    items.postValue(newitems)
+                    val filter =
+                        it.filter { it.inventory.userId == Amplify.Auth.currentUser.userId }
+                    if (!filter.isNullOrEmpty()) {
+                        newitems.addAll(filter)
+                    }
                 }
+                items.postValue(newitems)
                 Log.d(TAG, "Got items : " + response.data?.toString())
 
             },

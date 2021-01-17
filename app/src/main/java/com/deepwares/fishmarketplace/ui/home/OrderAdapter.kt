@@ -1,7 +1,9 @@
 package com.deepwares.fishmarketplace.ui.home
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.amplifyframework.datastore.generated.model.Inventory
 import com.deepwares.fishmarketplace.App
@@ -40,7 +42,10 @@ class OrderAdapter : RecyclerView.Adapter<OrderVH>() {
         )
 
         holder.size.text = item.size.name
-
+        val available = item.availableQuantity > 0f
+        holder.soldOut.visibility = if (!available) View.VISIBLE else View.GONE
+        holder.soldOutOverlay.visibility = if (!available) View.VISIBLE else View.GONE
+        ( holder.itemView as CardView).foreground = if (!available) App.getInstance().getDrawable(R.color.black_5_pct)  else App.getInstance().getDrawable(R.color.transparent)
     }
 
 }

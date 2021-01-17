@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.amplifyframework.datastore.generated.model.Inventory
 import com.amplifyframework.datastore.generated.model.Species
+import com.deepwares.fishmarketplace.App
 import com.deepwares.fishmarketplace.R
 import kotlinx.android.synthetic.main.fragment_add_inventory.*
 import kotlinx.android.synthetic.main.order_item.view.*
@@ -47,6 +48,18 @@ class AddInventoryFragment : Fragment() {
             FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
         )
 
+        val stat = App.INSTANCE.resources.getInteger(currentSpecies.status)
+
+        if (stat == 4) {
+            pager.visibility = View.INVISIBLE
+            card.visibility = View.GONE
+            conservation_status_label.visibility = View.VISIBLE
+            conservation_status.visibility = View.VISIBLE
+            desc.visibility = View.VISIBLE
+            desc.setText(currentSpecies.desc)
+            conservation_status.setText(R.string.status_banned)
+            conservation_status.setTextColor(resources.getColor(R.color.browser_actions_bg_grey))
+        }
         //species_image.setImageResource(args.image)
     }
 

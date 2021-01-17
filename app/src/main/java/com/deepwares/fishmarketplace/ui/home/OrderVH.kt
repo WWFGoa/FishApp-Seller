@@ -13,5 +13,7 @@ class OrderVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val name = itemView.findViewById<TextView>(R.id.name)
     val quantity = itemView.findViewById<TextView>(R.id.quantity)
     val cost = itemView.findViewById<TextView>(R.id.cost)
-    val size:TextView = itemView.findViewById(R.id.size)
+    val size: TextView = itemView.findViewById(R.id.size)
+    val soldOut: View = itemView.findViewById(R.id.sold_out)
+    val soldOutOverlay: View = itemView.findViewById(R.id.sold_out_overlay)
 }

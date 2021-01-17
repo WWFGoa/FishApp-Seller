@@ -11,7 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deepwares.fishmarketplace.R
-import kotlinx.android.synthetic.main.fragment_existing.*
+import kotlinx.android.synthetic.main.fragment_existing.list
+import kotlinx.android.synthetic.main.fragment_existing.swipe_refresh
 
 class ExistingOrderFragment : Fragment() {
 
@@ -27,6 +28,7 @@ class ExistingOrderFragment : Fragment() {
             ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_existing, container, false)
         homeViewModel.items.observe(viewLifecycleOwner, Observer {
+            swipe_refresh.isRefreshing = false
             adapter.items.clear()
             adapter.items.addAll(it)
             adapter.notifyDataSetChanged()
@@ -40,6 +42,9 @@ class ExistingOrderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         list.layoutManager = LinearLayoutManager(context)
         list.adapter = adapter
+        swipe_refresh.setOnRefreshListener {
+            homeViewModel.fetch()
+        }
     }
 
     override fun onResume() {

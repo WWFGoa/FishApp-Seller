@@ -29,10 +29,13 @@ class OrdersFragment : Fragment() {
         })
         adapter = MyOrderAdapter(this)
         ordersViewModel.items.observe(viewLifecycleOwner, Observer {
+            swipe_refresh.isRefreshing = false
             adapter.items.clear()
             adapter.items.addAll(it)
             adapter.notifyDataSetChanged()
         })
+
+
 
         return root
     }
@@ -41,6 +44,9 @@ class OrdersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         list.layoutManager = LinearLayoutManager(context)
         list.adapter = adapter
+        swipe_refresh.setOnRefreshListener {
+            ordersViewModel.fetch()
+        }
     }
 
     override fun onResume() {

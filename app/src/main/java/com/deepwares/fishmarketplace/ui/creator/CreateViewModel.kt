@@ -72,7 +72,6 @@ class CreateViewModel : ViewModel() {
                 userName = name?.value
                 if (name == null) {
                     userName = "Seller"
-
                 }
                 createListingInternal()
             }, {})

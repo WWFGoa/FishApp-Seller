@@ -44,5 +44,5 @@
     <color name="species_background_red">#C70039</color>
     <color name="species_background_grey">#585858</color>
     <color name="species_background_blue">#1E90FF</color>
-
+    <color name="transparent">#00000000</color>
 </resources>

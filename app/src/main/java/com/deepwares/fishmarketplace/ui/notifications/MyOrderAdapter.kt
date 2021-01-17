@@ -47,7 +47,7 @@ class MyOrderAdapter(var fragment: OrdersFragment?) : RecyclerView.Adapter<MyOrd
                 order.quantity.toString()
             )
         )
-        holder.buyer.text = item.contact
+        holder.buyer.text = order.name
         holder.name.setText(species.name)
         holder.sizeType.setText("(" + item.size.name + ")")
     }

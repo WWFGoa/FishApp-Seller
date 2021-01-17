@@ -18,6 +18,7 @@ import android.widget.Toast
 import com.deepwares.fishmarketplace.MainActivity
 import com.deepwares.fishmarketplace.R
 import com.deepwares.fishmarketplace.model.LoginError
+import com.deepwares.fishmarketplace.ui.tutorial.TutorialFragment
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -92,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
                         EditorInfo.IME_ACTION_DONE ->
                             loginViewModel.login(
                                 phone.text.toString(),
-                                password.text.toString()
+                                password.text.toString(), null
                             )
                     }
                 false
@@ -126,7 +127,7 @@ class LoginActivity : AppCompatActivity() {
         login.setOnClickListener {
             if (loginViewModel.loginFormState.value != null && loginViewModel.loginFormState.value!!.isDataValid) {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login("+91" + phone.text.toString(), password.text.toString())
+                loginViewModel.login("+91" + phone.text.toString(), password.text.toString(), null)
             } else {
                 Toast.makeText(this, R.string.login_form_error, Toast.LENGTH_LONG).show()
             }
@@ -189,11 +190,20 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun handleLoginSuccess() {
+
+        val tutorialFragment =
+            TutorialFragment()
+        tutorialFragment.show(supportFragmentManager, "")
+
+        /*
+
         setResult(Activity.RESULT_OK)
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         //Complete and destroy login activity once successful
         finish()
+
+         */
     }
 
     fun handleRegisterSuccess() {

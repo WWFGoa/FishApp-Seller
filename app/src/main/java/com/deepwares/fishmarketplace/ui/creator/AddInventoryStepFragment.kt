@@ -63,7 +63,6 @@ class AddInventoryStepFragment(contentLayoutId: Int) : Fragment(contentLayoutId)
                         pricePicker!!.maxValue = resources.getInteger(spec.maxPrice)
                         pricePicker!!.minValue = resources.getInteger(spec.minPrice)
                     } else {
-
                         pricePicker!!.maxValue = 250
                         pricePicker!!.minValue = 100
                     }

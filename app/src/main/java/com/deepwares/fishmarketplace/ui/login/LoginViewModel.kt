@@ -35,7 +35,7 @@ class LoginViewModel() : ViewModel() {
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    fun login(username: String, password: String) {
+    fun login(username: String, password: String, name: String?) {
 
         Amplify.Auth.signIn(
             username,
@@ -53,8 +53,22 @@ class LoginViewModel() : ViewModel() {
                     Preferences.setUserId(App.INSTANCE, currentUser.userId)
                     Log.d(
                         TAG,
-                        "user attributes | name :   ${currentUser.username}"
+                        "user attributes | username :   ${currentUser.username}"
+
                     )
+
+                    if (name != null) {
+                        Amplify.Auth.updateUserAttribute(
+                            AuthUserAttribute(
+                                AuthUserAttributeKey.name(),
+                                name
+                            ), {
+
+                                Log.d(TAG, "success updating name")
+                            }, {
+                                Log.d(TAG, "error updating name")
+                            })
+                    }
                     //result?.
                     _loginResult.postValue(LoginResult(success = LoggedInUserView(displayName = currentUser.username!!)))
                 }
@@ -130,10 +144,9 @@ class LoginViewModel() : ViewModel() {
             { result ->
                 Log.i("AuthQuickStart", "Result: $result")
                 result.user?.let {
-                    login(username, password)
+                    login(username, password,name)
                     Preferences.setUserId(App.INSTANCE, it.userId)
                 }
-
             },
             { e ->
                 Log.e(TAG, "REGISTER - onError | Could not login successfully", e)

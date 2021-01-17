@@ -28,7 +28,7 @@ object FishRepository {
         ),
         Species(
             R.string.giant_sea_perch,
-            R.drawable.baramundi,
+            R.drawable.giant_sea_perch,
             R.integer.giant_sea_perch_status,
             R.integer.giant_sea_perch_min_price,
             R.integer.giant_sea_perch_max_price,
