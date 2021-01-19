@@ -10,6 +10,7 @@ import com.amazonaws.mobile.client.AWSMobileClient
 import com.amazonaws.mobile.client.Callback
 import com.amazonaws.mobile.client.UserState
 import com.amazonaws.mobile.client.UserStateDetails
+import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
 import com.amplifyframework.core.Amplify
 import com.deepwares.fishmarketplace.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_splash.*
@@ -43,7 +44,14 @@ class SplashActivity : AppCompatActivity() {
             { result ->
                 Log.i("AmplifyQuickstart", result.toString())
 
-                if (!result.isSignedIn) {
+                if(result is AWSCognitoAuthSession){
+                    if(!result.isSignedIn|| result.awsCredentials.error!=null){
+                        Log.i(TAG, "ApiQuickstart | User not signed in. Go to login")
+                        showLogin()
+                        return@fetchAuthSession
+                    }
+                }
+                if (!result.isSignedIn ) {
                     Log.i(TAG, "ApiQuickstart | User not signed in. Go to login")
                     showLogin()
                 } else {

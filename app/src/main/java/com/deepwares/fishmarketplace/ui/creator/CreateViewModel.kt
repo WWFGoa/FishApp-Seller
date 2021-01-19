@@ -5,14 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.amplifyframework.api.ApiException
 import com.amplifyframework.api.graphql.model.ModelMutation
-import com.amplifyframework.auth.AuthException
-import com.amplifyframework.auth.AuthUserAttribute
 import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.core.Amplify
-import com.amplifyframework.core.Consumer
 import com.amplifyframework.datastore.generated.model.Inventory
 import com.deepwares.fishmarketplace.App
-import com.deepwares.fishmarketplace.R
 import com.deepwares.fishmarketplace.model.FishRepository
 import com.deepwares.fishmarketplace.model.Species
 
@@ -66,6 +62,7 @@ class CreateViewModel : ViewModel() {
     }
 
     fun createListing() {
+        val inv = inventory
         if (userName == null) {
             Amplify.Auth.fetchUserAttributes({ list ->
                 val name = list.find { it.key == AuthUserAttributeKey.name() }
@@ -73,15 +70,15 @@ class CreateViewModel : ViewModel() {
                 if (name == null) {
                     userName = "Seller"
                 }
-                createListingInternal()
+                createListingInternal(inv)
             }, {})
         } else {
-            createListingInternal()
+            createListingInternal(inv)
         }
     }
 
-    fun createListingInternal() {
-        inventory?.let {
+    fun createListingInternal(inv: Inventory.Builder?) {
+        inv?.let {
 
             val user = Amplify.Auth.currentUser
             it.contact(user.username)
@@ -118,7 +115,7 @@ class CreateViewModel : ViewModel() {
             Amplify.API.mutate(
                 ModelMutation.create(item),
                 { response ->
-                    Log.d(TAG, "Added Species with id: " + response?.data?.id)
+                    Log.d(TAG, "Added Species with id: " + response.data?.id)
                 },
                 { error: ApiException? ->
                     Log.e(TAG, "Create Species failed", error)
