@@ -51,11 +51,11 @@
             </intent-filter-->
         </activity>
 
-        <service android:name=".PushListenerService">
+        <!--service android:name=".PushListenerService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>
+        </service-->
 
     </application>
 

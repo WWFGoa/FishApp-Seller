@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1036272685575",
+    "project_id": "fishmarketplace-77fbb",
+    "storage_bucket": "fishmarketplace-77fbb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036272685575:android:6115d57cbb057d0f2090a2",
+        "android_client_info": {
+          "package_name": "com.deepwares.fishmarketplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1036272685575-ui5j3ojos820b6q0g07u13p4b1vvnh3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq14Ft8CxZCLLy_q7_g_iPx8c2APUbSmc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1036272685575-ui5j3ojos820b6q0g07u13p4b1vvnh3g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

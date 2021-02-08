@@ -32,11 +32,9 @@ class TutorialAdapter(
             Tutorial(R.drawable.asset_3_tutorial, R.string.tutorial_desc_3),
             Tutorial(R.drawable.asset_4_tutorial, R.string.tutorial_desc_4),
             Tutorial(R.drawable.asset_5_tutorial, R.string.tutorial_desc_5),
-            //Tutorial(R.drawable.asset_6_tutorial,R.string.tutorial_desc_6),
+            //Tutorial(R.drawable.asset_6_tutorial, R.string.tutorial_desc_6),
             Tutorial(R.drawable.asset_7_tutorial, R.string.tutorial_desc_7),
-            Tutorial(R.drawable.asset_8_tutorial, R.string.tutorial_desc_8),
-            Tutorial(R.drawable.asset_9_tutorial, R.string.tutorial_desc_9),
-            Tutorial(R.drawable.asset_10_tutorial, R.string.tutorial_desc_10)
+            Tutorial(R.drawable.asset_8_tutorial, R.string.tutorial_desc_8)
         )
         submitList(list)
     }

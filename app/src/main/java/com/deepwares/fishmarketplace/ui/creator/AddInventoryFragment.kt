@@ -50,7 +50,7 @@ class AddInventoryFragment : Fragment() {
 
         val stat = App.INSTANCE.resources.getInteger(currentSpecies.status)
 
-        if (stat == 4) {
+        if (stat == 4 || stat == 3) {
             pager.visibility = View.INVISIBLE
             card.visibility = View.GONE
             conservation_status_label.visibility = View.VISIBLE

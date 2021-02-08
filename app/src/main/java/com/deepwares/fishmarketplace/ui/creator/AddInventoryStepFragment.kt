@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.NumberPicker
-import android.widget.TimePicker
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.amplifyframework.core.model.temporal.Temporal
 import com.amplifyframework.datastore.generated.model.CatchSize
 import com.deepwares.fishmarketplace.R
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddInventoryStepFragment(contentLayoutId: Int) : Fragment(contentLayoutId) {
 
@@ -25,6 +25,7 @@ class AddInventoryStepFragment(contentLayoutId: Int) : Fragment(contentLayoutId)
     private var sellLocation: EditText? = null
     private var createListing: View? = null
 
+    private var radioButton: RadioGroup? = null
     val creatorStep = CreatorSteps.values().firstOrNull { it.layout == contentLayoutId }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +46,7 @@ class AddInventoryStepFragment(contentLayoutId: Int) : Fragment(contentLayoutId)
         creatorStep?.let {
             when (creatorStep) {
                 CreatorSteps.SIZE -> {
-
+                    radioButton = view.findViewById(R.id.size_option)
                 }
                 CreatorSteps.WEIGHT -> {
                     weightPicker = view.findViewById(R.id.weight_picker)
@@ -88,13 +89,26 @@ class AddInventoryStepFragment(contentLayoutId: Int) : Fragment(contentLayoutId)
         }
     }
 
+    fun validate(): Boolean {
+        // val copyInv = createViewModel.inventory.has
+        return true
+    }
+
     override fun onPause() {
         super.onPause()
         creatorStep?.let {
             when (creatorStep) {
                 CreatorSteps.SIZE -> {
-                    createViewModel.inventory?.size(CatchSize.MEDIUM)
 
+                    val pos = radioButton?.checkedRadioButtonId
+                    when (pos) {
+                        R.id.creator_size_small -> createViewModel.inventory?.size(CatchSize.SMALL)
+                        R.id.creator_size_medium -> createViewModel.inventory?.size(CatchSize.MEDIUM)
+                        R.id.creator_size_large -> createViewModel.inventory?.size(CatchSize.LARGE)
+                        else -> {
+                            createViewModel.inventory?.size(CatchSize.MEDIUM)
+                        }
+                    }
                 }
                 CreatorSteps.WEIGHT -> {
                     createViewModel.inventory?.quantity(weightPicker?.value!!.toFloat())
@@ -105,7 +119,23 @@ class AddInventoryStepFragment(contentLayoutId: Int) : Fragment(contentLayoutId)
                 }
                 CreatorSteps.CATCH_TIME -> {
                     createViewModel.inventory?.catchLocation(catchLocation?.text.toString())
-                    createViewModel.inventory?.catchTime(catchTimePicker?.currentHour?.toString())
+
+
+                    val dateTime = Date()
+                    dateTime
+                    val c = Calendar.getInstance()
+                    val g = GregorianCalendar(
+                        c.get(Calendar.YEAR),
+                        c.get(Calendar.MONTH),
+                        c.get(Calendar.DAY_OF_MONTH),
+                        catchTimePicker!!.currentHour,
+                        catchTimePicker!!.currentMinute
+                    )
+                    g.timeInMillis
+
+                    val catchTime =
+                        SimpleDateFormat("dd/MM/yyyy HH:mm").format(Date(g.timeInMillis))
+                    createViewModel.inventory?.catchTime(catchTime)
                 }
                 CreatorSteps.SELL_TIME -> {
                     createViewModel.inventory?.sellLocation(sellLocation?.text.toString())

@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id "androidx.navigation.safeargs.kotlin"
     id 'kotlin-android-extensions'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -12,8 +13,8 @@ android {
         applicationId "com.deepwares.fishmarketplace"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 4
-        versionName "1.4"
+        versionCode 7
+        versionName "1.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -62,9 +63,12 @@ dependencies {
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
     // Overrides an auth dependency to ensure correct behavior
-    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
-    implementation 'com.google.firebase:firebase-messaging:21.0.0'
+
+    implementation platform('com.google.firebase:firebase-bom:26.3.0')
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
 
 }
