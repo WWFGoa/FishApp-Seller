@@ -234,4 +234,42 @@ FishHub provides a platform for small scale, sustainable fishers to sell their c
     <string name="tutorial_title">Sustainability FAQ</string>
 
     <string name="sold_out">SOLD OUT!</string>
+
+
+
+    <string name="anchovy_konkani">Velli</string>
+    <string name="bombay_duck_konkani">Bombil</string>
+    <string name="giant_sea_perch_konkani">Chonak</string>
+    <string name="sole_konkani">Lepo</string>
+    <string name="pomfret_konkani">Pamplet</string>
+    <string name="salmon_konkani">Raus</string>
+    <string name="kingfish_konkani">Viswon/Surmai</string>
+    <string name="red_snapper_konkani">Tamuso</string>
+    <string name="grouper_konkani">Gobro</string>
+    <string name="tuna_konkani">Rogtado</string>
+    <string name="peral_spot_konkani">Kalundar</string>
+    <string name="ladyfish_konkani">Mudoshi</string>
+    <string name="hilsa_konkani">Pedi</string>
+    <string name="mackerel_konkani">Bangda</string>
+    <string name="black_pomfret_konkani">Pamplet</string>
+    <string name="mullet_konkani">Shevto </string>
+    <string name="sardine_konkani">Tarlo</string>
+    <string name="croaker_konkani">Dodyaro</string>
+    <string name="shark_konkani">Thato</string>
+    <string name="ray_konkani">Wagholen</string>
+    <string name="ghole_konkani">Ghol</string>
+    <string name="murrel_konkani">Snake head/Murrel</string>
+    <string name="seerfish_konkani">Viswon/Surmai</string>
+    <string name="sea_veral_konkani">Greater lizard fish</string>
+    <string name="squid_konkani">Maanke/Bondas</string>
+    <string name="tiger_prawn_konkani">Vagyo</string>
+    <string name="prawns_konkani">Sungta</string>
+    <string name="shrimp_konkani">Sungta</string>
+    <string name="lobster_konkani">Shivodd</string>
+    <string name="crab_konkani">Kurli</string>
+    <string name="short_necked_clams_konkani">Tisreo</string>
+    <string name="mussels_konkani">Xinaneao</string>
+    <string name="mahi_mahi_konkani">Mahi Mahi</string>
+    <string name="coconut_para_konkani">Talang queenfish</string>
+    <string name="expired">Expired!</string>
 </resources>

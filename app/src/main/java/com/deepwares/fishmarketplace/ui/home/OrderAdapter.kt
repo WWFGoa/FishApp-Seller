@@ -10,6 +10,7 @@ import com.deepwares.fishmarketplace.App
 import com.deepwares.fishmarketplace.R
 import com.deepwares.fishmarketplace.model.FishRepository
 import com.deepwares.fishmarketplace.model.Species
+import org.joda.time.DateTime
 
 class OrderAdapter : RecyclerView.Adapter<OrderVH>() {
     val species = ArrayList<Species>().apply { FishRepository.species }
@@ -42,10 +43,19 @@ class OrderAdapter : RecyclerView.Adapter<OrderVH>() {
         )
 
         holder.size.text = item.size.name
+
+        val createdAt = item.createdAt.toDate()
+        val expired = createdAt.before(DateTime.now().minusHours(6).toDate())
+
         val available = item.availableQuantity > 0f
-        holder.soldOut.visibility = if (!available) View.VISIBLE else View.GONE
-        holder.soldOutOverlay.visibility = if (!available) View.VISIBLE else View.GONE
-        ( holder.itemView as CardView).foreground = if (!available) App.getInstance().getDrawable(R.color.black_5_pct)  else App.getInstance().getDrawable(R.color.transparent)
+        holder.soldOut.visibility = if (!available || expired) View.VISIBLE else View.GONE
+        holder.soldOutOverlay.visibility = if (!available || expired) View.VISIBLE else View.GONE
+
+        holder.soldOut.text =
+            holder.itemView.resources.getString(if (expired) R.string.expired else R.string.sold_out)
+        (holder.itemView as CardView).foreground = if (!available || expired) App.getInstance()
+            .getDrawable(R.color.black_5_pct) else App.getInstance()
+            .getDrawable(R.color.transparent)
     }
 
 }

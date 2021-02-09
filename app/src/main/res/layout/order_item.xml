@@ -16,12 +16,12 @@
         <ImageView
             android:id="@+id/image"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="100dp"
             android:layout_margin="@dimen/padding_double"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="W,1:1"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.4" />
 
         <TextView
             android:id="@+id/label_name"
@@ -131,6 +131,20 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/padding_double"
             android:text="@string/sold_out"
+            android:textColor="@color/species_background_red"
+            android:textSize="@dimen/large_text_size"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_size" />
+        <TextView
+            android:id="@+id/expired"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_double"
+            android:text="@string/expired"
             android:textColor="@color/species_background_red"
             android:textSize="@dimen/large_text_size"
             android:textStyle="bold"

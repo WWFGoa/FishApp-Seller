@@ -52,6 +52,14 @@ class CreateViewModel : ViewModel() {
                     )
                     || App.INSTANCE.resources.getString(it.name).toLowerCase()
                         .equals(name.toLowerCase())
+                    || App.INSTANCE.resources.getString(it.konkaniName).toLowerCase()
+                        .equals(name.toLowerCase())
+                    || App.INSTANCE.resources.getString(it.commonName).toLowerCase()
+                        .equals(name.toLowerCase())
+                    || App.INSTANCE.resources.getString(it.konkaniName).toLowerCase()
+                        .contains(name.toLowerCase())
+                    || App.INSTANCE.resources.getString(it.commonName).toLowerCase()
+                        .contains(name.toLowerCase())
 
                 ) {
                     list.add(it)

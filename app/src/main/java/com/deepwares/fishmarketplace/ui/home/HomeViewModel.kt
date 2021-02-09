@@ -23,6 +23,7 @@ class HomeViewModel : ViewModel() {
             { response ->
                 val newitems = ArrayList<Inventory>()
                 response?.data?.let {
+
                     newitems.addAll(it)
                 }
                 items.postValue(newitems)
