@@ -55,10 +55,12 @@ class AddInventoryFragment : Fragment() {
             card.visibility = View.GONE
             conservation_status_label.visibility = View.VISIBLE
             conservation_status.visibility = View.VISIBLE
+            unavailable.visibility = View.VISIBLE
             desc.visibility = View.VISIBLE
             desc.setText(currentSpecies.desc)
             conservation_status.setText(R.string.status_banned)
             conservation_status.setTextColor(resources.getColor(R.color.browser_actions_bg_grey))
+
         }
         //species_image.setImageResource(args.image)
     }

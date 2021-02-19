@@ -24,7 +24,7 @@ class HomeViewModel : ViewModel() {
                 val newitems = ArrayList<Inventory>()
                 response?.data?.let {
 
-                    newitems.addAll(it)
+                    newitems.addAll(it.sortedByDescending { it.createdAt })
                 }
                 items.postValue(newitems)
                 Log.d(TAG, "Got items : " + response.data?.toString())

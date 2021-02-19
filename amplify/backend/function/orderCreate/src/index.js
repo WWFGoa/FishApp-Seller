@@ -5,10 +5,6 @@ exports.handler = event => {
     console.log(record.eventID);
     console.log(record.eventName);
     console.log('DynamoDB Record: %j', record.dynamodb);
-
-    if(record.eventName =="INSERT"){
-        
-    }
   });
   return Promise.resolve('Successfully processed DynamoDB record');
 };

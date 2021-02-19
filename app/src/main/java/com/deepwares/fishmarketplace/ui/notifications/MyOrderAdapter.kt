@@ -8,10 +8,13 @@ import com.deepwares.fishmarketplace.App
 import com.deepwares.fishmarketplace.R
 import com.deepwares.fishmarketplace.model.FishRepository
 import com.deepwares.fishmarketplace.model.Species
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
 
 class MyOrderAdapter(var fragment: OrdersFragment?) : RecyclerView.Adapter<MyOrderVH>() {
     val species = ArrayList<Species>().apply { addAll(FishRepository.species) }
     val items = ArrayList<Order>()
+    val dateTimeFormatter = DateTimeFormat.shortDateTime()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyOrderVH {
         val vh =
             MyOrderVH(
@@ -35,8 +38,7 @@ class MyOrderAdapter(var fragment: OrdersFragment?) : RecyclerView.Adapter<MyOrd
 
         val item = order.inventory
         val species = species[item.species]
-
-
+        
         holder.image.setImageResource(species.image)
         holder.cost.setText(
             App.INSTANCE.getString(R.string.price_in_kg, item.price.toString())
@@ -47,9 +49,14 @@ class MyOrderAdapter(var fragment: OrdersFragment?) : RecyclerView.Adapter<MyOrd
                 order.quantity.toString()
             )
         )
-        holder.buyer.text = order.name
+        holder.buyer.text = order.name ?: "N/A"
         holder.name.setText(species.name)
+        holder.kname.setText(species.konkaniName)
         holder.sizeType.setText("(" + item.size.name + ")")
+
+        val time = item.createdAt.format()
+        val dateTime = DateTime.parse(time)
+        holder.time.setText(dateTimeFormatter.print(dateTime))
     }
 
 }
