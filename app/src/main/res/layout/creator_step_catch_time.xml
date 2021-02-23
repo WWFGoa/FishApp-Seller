@@ -5,39 +5,30 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:textStyle="bold"
+        android:textColor="@color/black"
         android:id="@+id/label"
-        android:layout_margin="@dimen/padding_double"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_double"
+        android:gravity="center"
         android:text="@string/label_catch_time"
-        android:textSize="@dimen/xxlarge_text_size"
+        android:textAlignment="gravity"
+        android:textSize="@dimen/xlarge_text_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/catch_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_double"
-        android:ellipsize="end"
-        android:hint="@string/catch_location"
-        android:lines="1"
-        android:textSize="@dimen/large_text_size"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/label" />
 
     <TimePicker
 
         android:id="@+id/catch_time"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleX="0.6"
-        android:scaleY="0.6"
-        android:translationY="50dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/padding_triple"
+        android:timePickerMode="spinner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/label" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import com.amplifyframework.datastore.generated.model.Inventory
 import com.amplifyframework.datastore.generated.model.Order
 import com.amplifyframework.datastore.generated.model.Order.INVENTORY
 import com.google.android.gms.auth.api.Auth
+import org.joda.time.DateTime
 
 class OrdersViewModel : ViewModel() {
 
@@ -24,7 +25,8 @@ class OrdersViewModel : ViewModel() {
     fun fetch() {
         Amplify.API.query(
             ModelQuery.list(
-                Order::class.java
+                Order::class.java,
+                Order.CREATED_AT.gt(DateTime.now().minusDays(7).toDate())
                 //, Inventory.USER_ID.eq(Amplify.Auth.currentUser.userId)
             ),
             { response ->

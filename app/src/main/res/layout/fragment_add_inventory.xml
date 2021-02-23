@@ -7,13 +7,46 @@
 
     <ImageView
         android:id="@+id/species_image"
-        android:layout_width="0dp"
-        android:layout_height="128dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_margin="@dimen/padding_triple"
-        app:layout_constraintBottom_toTopOf="@id/pager"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@id/name"
+        app:layout_constraintHeight_percent="0.15"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_half"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="1"
+        android:textSize="@dimen/large_text_size"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/kname"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/species_image" />
+
+
+    <TextView
+        android:id="@+id/kname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_half"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="1"
+        android:textSize="@dimen/large_text_size"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@id/pager"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name" />
 
     <TextView
         android:id="@+id/conservation_status_label"
@@ -26,7 +59,7 @@
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/species_image"
+        app:layout_constraintTop_toBottomOf="@id/kname"
         tools:text="WTF" />
 
 
@@ -37,7 +70,7 @@
         android:layout_margin="@dimen/padding_double"
         android:gravity="right"
         android:textAlignment="gravity"
-        android:textColor="@color/black_90_pct"
+        android:textColor="@color/black"
         android:textSize="@dimen/large_text_size"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/conservation_status_label"
@@ -45,18 +78,24 @@
         app:layout_constraintTop_toTopOf="@id/conservation_status_label"
         tools:text="WTF" />
 
-    <TextView
-        android:id="@+id/desc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <ScrollView
+        android:id="@+id/desc_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_margin="@dimen/padding_double"
-        android:ellipsize="end"
-        android:textSize="@dimen/xlarge_text_size"
-        android:visibility="gone"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/conservation_status_label"
-        tools:text="WTF" />
+        app:layout_constraintBottom_toTopOf="@id/unavailable"
+        app:layout_constraintTop_toBottomOf="@id/conservation_status_label">
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textSize="@dimen/xlarge_text_size"
+            android:visibility="gone"
+            tools:text="WTF" />
+    </ScrollView>
+
 
     <Button
         android:id="@+id/unavailable"
@@ -72,10 +111,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/desc"
+        app:layout_constraintTop_toBottomOf="@id/desc_container"
         tools:text="WTF" />
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -84,10 +123,10 @@
         app:cardElevation="@dimen/padding_standard"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/next"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/species_image" />
+        app:layout_constraintTop_toBottomOf="@id/kname" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
@@ -99,7 +138,7 @@
         app:cardElevation="@dimen/padding_standard"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/next"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
@@ -109,6 +148,67 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/padding_standard"
+        android:layout_marginBottom="@dimen/padding_triple"
+        android:paddingLeft="@dimen/padding_double"
+        android:paddingRight="@dimen/padding_double"
+        android:text="@string/creator_prev"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/xlarge_text_size"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/next" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_standard"
+        android:layout_marginBottom="@dimen/padding_triple"
+        android:paddingLeft="@dimen/padding_double"
+        android:paddingRight="@dimen/padding_double"
+        android:text="@string/creator_next"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/xlarge_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/prev"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_standard"
+        android:layout_marginBottom="@dimen/padding_triple"
+        android:paddingLeft="@dimen/padding_double"
+        android:paddingRight="@dimen/padding_double"
+        android:text="@string/create_listing"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/xlarge_text_size"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/prev"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/pager"
+        app:layout_constraintLeft_toLeftOf="@id/pager"
+        app:layout_constraintRight_toRightOf="@id/pager"
+        app:layout_constraintTop_toTopOf="@id/pager" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

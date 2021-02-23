@@ -8,6 +8,7 @@ import com.amplifyframework.api.graphql.model.ModelQuery
 import com.amplifyframework.core.Amplify
 import com.amplifyframework.core.model.query.predicate.QueryPredicate
 import com.amplifyframework.datastore.generated.model.Inventory
+import org.joda.time.DateTime
 
 class HomeViewModel : ViewModel() {
 
@@ -18,7 +19,11 @@ class HomeViewModel : ViewModel() {
         Amplify.API.query(
             ModelQuery.list(
                 Inventory::class.java,
-                Inventory.USER_ID.eq(Amplify.Auth.currentUser.userId)
+                Inventory.USER_ID.eq(Amplify.Auth.currentUser.userId).and(
+                    Inventory.CREATED_AT.gt(
+                        DateTime.now().minusDays(7).toDate()
+                    )
+                )
             ),
             { response ->
                 val newitems = ArrayList<Inventory>()

@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".ui.creator.CreateFragment">
 
     <androidx.appcompat.widget.SearchView
@@ -21,10 +24,14 @@
 
 
     <TextView
+        android:paddingLeft="@dimen/padding_double"
+        android:paddingTop="@dimen/padding_standard"
+        android:paddingBottom="@dimen/padding_standard"
+        android:paddingRight="@dimen/padding_double"
         android:id="@+id/legend_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_double"
+        android:layout_margin="@dimen/padding_standard"
         android:text="@string/status_depleted"
         android:textColor="@color/species_background_red"
         android:textSize="@dimen/large_text_size"
@@ -34,10 +41,14 @@
         app:layout_constraintTop_toBottomOf="@id/search_view" />
 
     <TextView
+        android:paddingLeft="@dimen/padding_double"
+        android:paddingTop="@dimen/padding_standard"
+        android:paddingBottom="@dimen/padding_standard"
+        android:paddingRight="@dimen/padding_double"
         android:id="@+id/legend_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_double"
+        android:layout_margin="@dimen/padding_standard"
         android:text="@string/status_declining"
         android:textColor="@color/species_background_yellow"
         android:textSize="@dimen/large_text_size"
@@ -47,10 +58,14 @@
         app:layout_constraintTop_toBottomOf="@id/search_view" />
 
     <TextView
+        android:paddingLeft="@dimen/padding_double"
+        android:paddingTop="@dimen/padding_standard"
+        android:paddingBottom="@dimen/padding_standard"
+        android:paddingRight="@dimen/padding_double"
         android:id="@+id/legend_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_double"
+        android:layout_margin="@dimen/padding_standard"
         android:text="@string/status_adbundant"
         android:textColor="@color/species_background_green"
         android:textSize="@dimen/large_text_size"
@@ -60,10 +75,14 @@
         app:layout_constraintTop_toBottomOf="@id/search_view" />
 
     <TextView
+        android:paddingLeft="@dimen/padding_double"
+        android:paddingTop="@dimen/padding_standard"
+        android:paddingBottom="@dimen/padding_standard"
+        android:paddingRight="@dimen/padding_double"
         android:id="@+id/legend_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_double"
+        android:layout_margin="@dimen/padding_standard"
         android:text="@string/status_banned"
         android:textColor="@color/species_background_grey"
         android:textSize="@dimen/large_text_size"
@@ -74,10 +93,14 @@
         app:layout_constraintTop_toBottomOf="@id/legend_1" />
 
     <TextView
+        android:paddingLeft="@dimen/padding_double"
+        android:paddingTop="@dimen/padding_standard"
+        android:paddingBottom="@dimen/padding_standard"
+        android:paddingRight="@dimen/padding_double"
         android:id="@+id/legend_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_double"
+        android:layout_margin="@dimen/padding_standard"
         android:text="@string/status_not_major_fishery"
         android:textColor="@color/species_background_blue"
         android:textSize="@dimen/large_text_size"

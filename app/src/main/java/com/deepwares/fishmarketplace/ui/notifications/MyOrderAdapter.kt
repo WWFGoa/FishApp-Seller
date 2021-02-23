@@ -38,7 +38,7 @@ class MyOrderAdapter(var fragment: OrdersFragment?) : RecyclerView.Adapter<MyOrd
 
         val item = order.inventory
         val species = species[item.species]
-        
+
         holder.image.setImageResource(species.image)
         holder.cost.setText(
             App.INSTANCE.getString(R.string.price_in_kg, item.price.toString())

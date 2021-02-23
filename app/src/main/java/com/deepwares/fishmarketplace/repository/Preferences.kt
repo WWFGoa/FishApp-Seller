@@ -98,5 +98,25 @@ class Preferences {
             )
             preferences.edit().clear().apply()
         }
+
+        @JvmStatic
+        fun getName(context: Context): String? {
+            val preferences = context.getSharedPreferences(
+                context.getString(R.string.app_name),
+                Context.MODE_PRIVATE
+            )
+            return preferences.getString("name", null)
+        }
+
+        @JvmStatic
+        fun setName(context: Context, name: String?) {
+            val preferences = context.getSharedPreferences(
+                context.getString(R.string.app_name),
+                Context.MODE_PRIVATE
+            )
+            preferences.edit().putString("name", name).apply()
+        }
     }
+
+
 }

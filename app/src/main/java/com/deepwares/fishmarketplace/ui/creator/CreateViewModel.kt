@@ -16,25 +16,38 @@ import com.deepwares.fishmarketplace.model.Species
 class CreateViewModel : ViewModel() {
 
     val TAG = CreateViewModel::class.java.name
-
+    val IN_FLIGHT = 0
+    val COMPLETE = 1
+    val ERROR = 2
     val species = ArrayList<Species>().apply { addAll(FishRepository.species) }
-
+    var creatorProgress = MutableLiveData<Int>(-1)
     private val _species = MutableLiveData<List<Species>>().apply {
         value = species
     }
 
+    val speciesSearch = ArrayList<Species>().apply { addAll(FishRepository.species) }
+
     val speciesFiltered = ArrayList<Species>().apply { addAll(FishRepository.species) }
+
+    private val _speciesSearch = MutableLiveData<List<Species>>().apply {
+        value = speciesSearch
+    }
 
     private val _speciesFiltered = MutableLiveData<List<Species>>().apply {
         value = speciesFiltered
     }
 
     val speciesLiveData: MutableLiveData<List<Species>> = _species
+    val speciesSearchLiveData: MutableLiveData<List<Species>> = _speciesSearch
     val speciesFilteredLiveData: MutableLiveData<List<Species>> = _speciesFiltered
+
+
     var inventory: Inventory.Builder? = null
     var currentSpecies: com.amplifyframework.datastore.generated.model.Species.Builder? = null
 
     var userName: String? = null
+
+    var currentStep = CreatorSteps.SIZE
 
     fun filter(name: String?) {
 
@@ -66,10 +79,26 @@ class CreateViewModel : ViewModel() {
                 }
             }
         }
+        speciesSearchLiveData.postValue(list)
+    }
+
+    fun filter(category: Int?) {
+
+        var list = ArrayList<Species>()
+        if (category == null) {
+            list.addAll(FishRepository.species)
+        } else {
+            list.addAll(FishRepository.species.filter { App.INSTANCE.resources.getInteger(it.status) == category })
+        }
         speciesFilteredLiveData.postValue(list)
     }
 
     fun createListing() {
+        if (creatorProgress.value == IN_FLIGHT) {
+            Log.d(TAG, "Creation already in progress. Possible double tap")
+            return
+        }
+        creatorProgress.postValue(IN_FLIGHT)
         val inv = inventory
         if (userName == null) {
             Amplify.Auth.fetchUserAttributes({ list ->
@@ -79,7 +108,9 @@ class CreateViewModel : ViewModel() {
                     userName = "Seller"
                 }
                 createListingInternal(inv)
-            }, {})
+            }, {
+                creatorProgress.postValue(ERROR)
+            })
         } else {
             createListingInternal(inv)
         }
@@ -100,9 +131,11 @@ class CreateViewModel : ViewModel() {
                         TAG,
                         "Added Inventory with id: " + response?.data?.id
                     )
+                    creatorProgress.postValue(COMPLETE)
                 },
                 { error: ApiException? ->
                     Log.e(TAG, "Create Inventory failed", error)
+                    creatorProgress.postValue(ERROR)
                 }
             )
         }
@@ -130,5 +163,21 @@ class CreateViewModel : ViewModel() {
                 }
             )
         }
+    }
+
+    fun isCurrentStepValid(): Boolean {
+        val inv = inventory?.build()
+        inv?.let {
+            when (currentStep) {
+                CreatorSteps.SIZE -> return inv.size != null
+                CreatorSteps.WEIGHT -> return inv.quantity != null
+                CreatorSteps.PRICE -> return inv.price != null
+                CreatorSteps.CATCH_TIME -> return inv.catchTime.isNullOrBlank().not()
+                CreatorSteps.CATCH_LOCATION -> return inv.catchLocation.isNullOrBlank().not()
+                CreatorSteps.SELL_LOCATION -> return inv.sellLocation.isNullOrBlank().not()
+                CreatorSteps.FINISH -> return true
+            }
+        }
+        return false
     }
 }

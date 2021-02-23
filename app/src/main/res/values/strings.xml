@@ -15,11 +15,13 @@
     <string name="creator_size_small">Small</string>
     <string name="creator_size_medium">Medium</string>
     <string name="creator_size_large">Large</string>
-    <string name="label_weight">Weight in Kg</string>
-    <string name="label_price">Price in Rs/Kg</string>
-    <string name="catch_location">Location Ex. Miramar/Juhu Beach</string>
-    <string name="label_catch_time">Catch Details</string>
-    <string name="label_sell_time">Sell Details</string>
+    <string name="label_weight">How much fish are you selling? (Weight in Kg)</string>
+    <string name="label_price">What is the price you want to set? (Price in Rs/Kg)</string>
+    <string name="catch_location">Fishing location</string>
+    <string name="sell_location">Pickup address</string>
+    <string name="label_catch_time">When was the fish caught?</string>
+    <string name="label_catch_location">Where was the fish caught?</string>
+    <string name="label_sell_location">Where should the customer pick up the fish?</string>
 
 
     <string name="anchovy">Anchovy</string>
@@ -236,7 +238,6 @@ FishHub provides a platform for small scale, sustainable fishers to sell their c
     <string name="sold_out">SOLD OUT!</string>
 
 
-
     <string name="anchovy_konkani">Velli</string>
     <string name="bombay_duck_konkani">Bombil</string>
     <string name="giant_sea_perch_konkani">Chonak</string>
@@ -272,4 +273,25 @@ FishHub provides a platform for small scale, sustainable fishers to sell their c
     <string name="mahi_mahi_konkani">Mahi Mahi</string>
     <string name="coconut_para_konkani">Talang queenfish</string>
     <string name="expired">Expired!</string>
+    <string name="label_size">What is the average size of the fish?</string>
+    <string name="creator_next">Next</string>
+    <string name="creator_prev">Back</string>
+    <string name="create_listing">Create</string>
+    <string name="label_create_confirm">Does everything look ok?</string>
+    <string name="size">Size</string>
+
+    <string name="create_error_size">Please specify a catch size</string>
+    <string name="create_error_qty">Please specify a catch quantity</string>
+    <string name="create_error_cost">Please specify cost per Kg</string>
+    <string name="create_error_catch_time">Please specify the time of catch</string>
+    <string name="create_error_catch_loc">Please specify the location where it was caught</string>
+    <string name="create_error_sell_loc">Please specify the pick up address for the customer</string>
+    <string name="create_success">Your listing has been created successfully!</string>
+
+    <string name="create_error">Unfortunately your listing could not be created at this time. Please check your wifi network or try again later!</string>
+
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Feedback</string>
+    <string name="logout">Logout</string>
+    <string name="email_feedback" translatable="false">cdlima@wwf.net</string>
 </resources>

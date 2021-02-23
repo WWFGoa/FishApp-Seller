@@ -36,7 +36,7 @@ class LoginViewModel() : ViewModel() {
     val loginResult: LiveData<LoginResult> = _loginResult
 
     fun login(username: String, password: String, name: String?) {
-
+        Preferences.setName(App.INSTANCE, name)
         Amplify.Auth.signIn(
             username,
             password,
@@ -133,7 +133,7 @@ class LoginViewModel() : ViewModel() {
     fun register(phone: String, password: String, name: String) {
         val username = "+91$phone"
 
-
+        Preferences.setName(App.INSTANCE, name)
         Amplify.Auth.signUp(
             username,
             password,
@@ -144,7 +144,7 @@ class LoginViewModel() : ViewModel() {
             { result ->
                 Log.i("AuthQuickStart", "Result: $result")
                 result.user?.let {
-                    login(username, password,name)
+                    login(username, password, name)
                     Preferences.setUserId(App.INSTANCE, it.userId)
                 }
             },

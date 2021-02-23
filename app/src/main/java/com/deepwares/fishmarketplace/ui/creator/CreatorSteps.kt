@@ -7,6 +7,7 @@ enum class CreatorSteps(val layout: Int) {
     WEIGHT(R.layout.creator_step_weight),
     PRICE(R.layout.creator_step_price),
     CATCH_TIME(R.layout.creator_step_catch_time),
-    SELL_TIME(R.layout.creator_step_sell_time),
+    CATCH_LOCATION(R.layout.creator_step_catch_location),
+    SELL_LOCATION(R.layout.creator_step_sell_location),
     FINISH(R.layout.creator_step_finish)
 }

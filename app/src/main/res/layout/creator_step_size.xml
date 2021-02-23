@@ -4,6 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_double"
+        android:gravity="center"
+        android:text="@string/label_size"
+        android:textAlignment="gravity"
+        android:textColor="@color/black"
+        android:textSize="@dimen/xlarge_text_size"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <RadioGroup
         android:id="@+id/size_option"
         android:layout_width="wrap_content"
@@ -11,28 +26,28 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/label">
 
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/creator_size_small"
             android:layout_width="wrap_content"
-            android:textSize="@dimen/xxxlarge_text_size"
             android:layout_height="wrap_content"
-            android:text="@string/creator_size_small" />
+            android:text="@string/creator_size_small"
+            android:textSize="@dimen/xlarge_text_size" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/creator_size_medium"
             android:layout_width="wrap_content"
-            android:textSize="@dimen/xxxlarge_text_size"
             android:layout_height="wrap_content"
-            android:text="@string/creator_size_medium" />
+            android:text="@string/creator_size_medium"
+            android:textSize="@dimen/xlarge_text_size" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/creator_size_large"
             android:layout_width="wrap_content"
-            android:textSize="@dimen/xxxlarge_text_size"
             android:layout_height="wrap_content"
-            android:text="@string/creator_size_large" />
+            android:text="@string/creator_size_large"
+            android:textSize="@dimen/xlarge_text_size" />
     </RadioGroup>
 
 
