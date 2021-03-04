@@ -72,8 +72,8 @@
             android:layout_height="@dimen/order_image_height"
             android:layout_margin="@dimen/padding_double"
             android:scaleType="centerInside"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/labels_left"
             app:layout_constraintTop_toBottomOf="@id/size_type"
             app:layout_constraintWidth_percent="0.3" />
@@ -190,8 +190,8 @@
             tools:text="sss" />
 
         <Button
-            style="@style/ButtonRed"
             android:id="@+id/sold_out"
+            style="@style/ButtonRed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/padding_double"
@@ -221,14 +221,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="left"
-            app:constraint_referenced_ids="label_cost,label_quantity,label_seller,label_location,label_time" />
+            app:constraint_referenced_ids="label_cost,label_quantity,label_location,label_time" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/labels_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="right"
-            app:constraint_referenced_ids="label_cost,label_quantity,label_seller,label_location,label_time" />
+            app:constraint_referenced_ids="label_cost,label_quantity,label_location,label_time" />
 
         <View
             android:id="@+id/sold_out_overlay"

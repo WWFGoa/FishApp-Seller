@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
@@ -111,7 +113,11 @@ class AddInventoryFragment : Fragment() {
             } else if (it == createViewModel.COMPLETE) {
                 progress_bar?.visibility = View.GONE
                 Toast.makeText(context, R.string.create_success, Toast.LENGTH_LONG).show()
-                findNavController().navigate(R.id.navigation_existing)
+
+                val navController =
+                    Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+                navController.popBackStack(R.id.navigation_add, true)
+                navController.navigate(R.id.navigation_existing)
             } else {
                 progress_bar?.visibility = View.GONE
             }

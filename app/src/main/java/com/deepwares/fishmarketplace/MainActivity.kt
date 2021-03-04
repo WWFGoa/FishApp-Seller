@@ -28,6 +28,7 @@ import com.amplifyframework.datastore.generated.model.SellerPushToken
 import com.deepwares.fishmarketplace.interfaces.SpeciesSelector
 import com.deepwares.fishmarketplace.model.Species
 import com.deepwares.fishmarketplace.ui.creator.CreateFragmentDirections
+import com.deepwares.fishmarketplace.ui.tutorial.TutorialFragment
 import com.deepwares.fishmarketplaceconsumer.repository.Preferences
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
@@ -89,6 +90,11 @@ class MainActivity : AppCompatActivity(), SpeciesSelector {
                 R.id.logout -> logout()
                 R.id.nav_share -> shareApp()
                 R.id.menu_send -> feedback(resources.getString(R.string.menu_send))
+                R.id.menu_tutorial -> {
+                    val tutorialFragment =
+                        TutorialFragment()
+                    tutorialFragment.show(supportFragmentManager, "")
+                }
             }
             return@setNavigationItemSelectedListener true
         }
