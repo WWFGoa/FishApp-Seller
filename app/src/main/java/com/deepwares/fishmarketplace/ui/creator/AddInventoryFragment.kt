@@ -22,6 +22,34 @@ import com.deepwares.fishmarketplace.R
 import kotlinx.android.synthetic.main.fragment_add_inventory.*
 import kotlinx.android.synthetic.main.order_item.view.*
 
+
+@Override
+public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(id);
+    dest.writeString(phone);
+    dest.writeString(firstName);
+    dest.writeString(lastName);
+    dest.writeByte((byte) (verified ? 1 : 0));
+    dest.writeByte((byte) (certified ? 1 : 0));
+    dest.writeLong(createdAt != null ? createdAt.getMillis() : -1);
+    dest.writeString(avatarUrl);
+    dest.writeString(coverUrl);
+    dest.writeString(username);
+    dest.writeString(twitterUsername);
+    dest.writeString(twitterUrl);
+    dest.writeString(instagramUsername);
+    dest.writeString(instagramUrl);
+    dest.writeString(bio);
+    dest.writeByte((byte) (privateProfile ? 1 : 0));
+    dest.writeLong(activatedAt != null ? activatedAt.getMillis() : -1);
+    dest.writeString(userGraph != null ? userGraph.name() : null);
+    dest.writeParcelable(dob, Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
+    dest.writeInt(followerCount);
+    dest.writeInt(followingCount);
+    dest.writeInt(mutualFollowingCount);
+    dest.writeString(followStatus == null ? FollowStatus.UNKNOWN.name() : followStatus.name());
+    dest.writeString(referencedFollowState == null ? FollowStatus.UNKNOWN.name() : referencedFollowState.name());
+}
 class AddInventoryFragment : Fragment() {
 
     val args: AddInventoryFragmentArgs by navArgs()
