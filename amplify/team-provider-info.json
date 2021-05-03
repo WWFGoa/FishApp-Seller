@@ -16,5 +16,27 @@
         "FMP": {}
       }
     }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fmp-dev-103746-authRole",
+      "UnauthRoleArn": "arn:aws:iam::768987361996:role/amplify-fmp-dev-103746-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::768987361996:role/amplify-fmp-dev-103746-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-fmp-dev-103746-deployment",
+      "UnauthRoleName": "amplify-fmp-dev-103746-unauthRole",
+      "StackName": "amplify-fmp-dev-103746",
+      "StackId": "arn:aws:cloudformation:us-east-1:768987361996:stack/amplify-fmp-dev-103746/8373ecb0-abcd-11eb-af69-0ebb325b25bf",
+      "AmplifyAppId": "dli0kr1iahq6h"
+    },
+    "categories": {
+      "auth": {
+        "FMP": {}
+      },
+      "function": {
+        "inventoryCreateTest": {},
+        "orderCreate": {}
+      }
+    }
   }
 }
