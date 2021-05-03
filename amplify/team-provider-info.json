@@ -34,8 +34,14 @@
         "FMP": {}
       },
       "function": {
-        "inventoryCreateTest": {},
-        "orderCreate": {}
+        "inventoryCreateTest": {
+          "deploymentBucketName": "amplify-fmp-dev-103746-deployment",
+          "s3Key": "amplify-builds/inventoryCreateTest-344b4c7a32786544642b-build.zip"
+        },
+        "orderCreate": {
+          "deploymentBucketName": "amplify-fmp-dev-103746-deployment",
+          "s3Key": "amplify-builds/orderCreate-72387a4856324f7a377a-build.zip"
+        }
       }
     }
   }

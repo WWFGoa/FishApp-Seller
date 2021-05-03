@@ -21,6 +21,12 @@
     "authFMPUserPoolId": {
       "Type": "String",
       "Default": "authFMPUserPoolId"
+    },
+    "deploymentBucketName": {
+      "Type": "String"
+    },
+    "s3Key": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -193,8 +199,12 @@
         "Layers": [],
         "Timeout": "25",
         "Code": {
-          "S3Bucket": "amplify-fmp-staging-05820-deployment",
-          "S3Key": "amplify-builds/orderCreate-72387a4856324f7a377a-build.zip"
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": {
+            "Ref": "s3Key"
+          }
         }
       }
     },
