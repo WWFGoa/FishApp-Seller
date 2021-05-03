@@ -1,0 +1,205 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateOrder {
+  onCreateOrder {
+    id
+    quantity
+    createdAt
+    updatedAt
+    contact
+    name
+    userId
+    expired
+    Inventory {
+      id
+      species
+      quantity
+      availableQuantity
+      price
+      catchLocation
+      sellLocation
+      catchTime
+      sellTime
+      size
+      createdAt
+      updatedAt
+      contact
+      name
+      userId
+      expired
+    }
+  }
+}
+subscription OnUpdateOrder {
+  onUpdateOrder {
+    id
+    quantity
+    createdAt
+    updatedAt
+    contact
+    name
+    userId
+    expired
+    Inventory {
+      id
+      species
+      quantity
+      availableQuantity
+      price
+      catchLocation
+      sellLocation
+      catchTime
+      sellTime
+      size
+      createdAt
+      updatedAt
+      contact
+      name
+      userId
+      expired
+    }
+  }
+}
+subscription OnDeleteOrder {
+  onDeleteOrder {
+    id
+    quantity
+    createdAt
+    updatedAt
+    contact
+    name
+    userId
+    expired
+    Inventory {
+      id
+      species
+      quantity
+      availableQuantity
+      price
+      catchLocation
+      sellLocation
+      catchTime
+      sellTime
+      size
+      createdAt
+      updatedAt
+      contact
+      name
+      userId
+      expired
+    }
+  }
+}
+subscription OnCreateInventory {
+  onCreateInventory {
+    id
+    species
+    quantity
+    availableQuantity
+    price
+    catchLocation
+    sellLocation
+    catchTime
+    sellTime
+    size
+    createdAt
+    updatedAt
+    contact
+    name
+    userId
+    expired
+  }
+}
+subscription OnUpdateInventory {
+  onUpdateInventory {
+    id
+    species
+    quantity
+    availableQuantity
+    price
+    catchLocation
+    sellLocation
+    catchTime
+    sellTime
+    size
+    createdAt
+    updatedAt
+    contact
+    name
+    userId
+    expired
+  }
+}
+subscription OnDeleteInventory {
+  onDeleteInventory {
+    id
+    species
+    quantity
+    availableQuantity
+    price
+    catchLocation
+    sellLocation
+    catchTime
+    sellTime
+    size
+    createdAt
+    updatedAt
+    contact
+    name
+    userId
+    expired
+  }
+}
+subscription OnCreateBuyerPushToken {
+  onCreateBuyerPushToken {
+    id
+    userId
+    token
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateBuyerPushToken {
+  onUpdateBuyerPushToken {
+    id
+    userId
+    token
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteBuyerPushToken {
+  onDeleteBuyerPushToken {
+    id
+    userId
+    token
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateSellerPushToken {
+  onCreateSellerPushToken {
+    id
+    userId
+    token
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateSellerPushToken {
+  onUpdateSellerPushToken {
+    id
+    userId
+    token
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteSellerPushToken {
+  onDeleteSellerPushToken {
+    id
+    userId
+    token
+    createdAt
+    updatedAt
+  }
+}

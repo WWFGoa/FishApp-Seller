@@ -1,0 +1,241 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateOrder(
+  $input: CreateOrderInput!
+  $condition: ModelOrderConditionInput
+) {
+  createOrder(input: $input, condition: $condition) {
+    id
+    quantity
+    createdAt
+    updatedAt
+    contact
+    name
+    userId
+    expired
+    Inventory {
+      id
+      species
+      quantity
+      availableQuantity
+      price
+      catchLocation
+      sellLocation
+      catchTime
+      sellTime
+      size
+      createdAt
+      updatedAt
+      contact
+      name
+      userId
+      expired
+    }
+  }
+}
+mutation UpdateOrder(
+  $input: UpdateOrderInput!
+  $condition: ModelOrderConditionInput
+) {
+  updateOrder(input: $input, condition: $condition) {
+    id
+    quantity
+    createdAt
+    updatedAt
+    contact
+    name
+    userId
+    expired
+    Inventory {
+      id
+      species
+      quantity
+      availableQuantity
+      price
+      catchLocation
+      sellLocation
+      catchTime
+      sellTime
+      size
+      createdAt
+      updatedAt
+      contact
+      name
+      userId
+      expired
+    }
+  }
+}
+mutation DeleteOrder(
+  $input: DeleteOrderInput!
+  $condition: ModelOrderConditionInput
+) {
+  deleteOrder(input: $input, condition: $condition) {
+    id
+    quantity
+    createdAt
+    updatedAt
+    contact
+    name
+    userId
+    expired
+    Inventory {
+      id
+      species
+      quantity
+      availableQuantity
+      price
+      catchLocation
+      sellLocation
+      catchTime
+      sellTime
+      size
+      createdAt
+      updatedAt
+      contact
+      name
+      userId
+      expired
+    }
+  }
+}
+mutation CreateInventory(
+  $input: CreateInventoryInput!
+  $condition: ModelInventoryConditionInput
+) {
+  createInventory(input: $input, condition: $condition) {
+    id
+    species
+    quantity
+    availableQuantity
+    price
+    catchLocation
+    sellLocation
+    catchTime
+    sellTime
+    size
+    createdAt
+    updatedAt
+    contact
+    name
+    userId
+    expired
+  }
+}
+mutation UpdateInventory(
+  $input: UpdateInventoryInput!
+  $condition: ModelInventoryConditionInput
+) {
+  updateInventory(input: $input, condition: $condition) {
+    id
+    species
+    quantity
+    availableQuantity
+    price
+    catchLocation
+    sellLocation
+    catchTime
+    sellTime
+    size
+    createdAt
+    updatedAt
+    contact
+    name
+    userId
+    expired
+  }
+}
+mutation DeleteInventory(
+  $input: DeleteInventoryInput!
+  $condition: ModelInventoryConditionInput
+) {
+  deleteInventory(input: $input, condition: $condition) {
+    id
+    species
+    quantity
+    availableQuantity
+    price
+    catchLocation
+    sellLocation
+    catchTime
+    sellTime
+    size
+    createdAt
+    updatedAt
+    contact
+    name
+    userId
+    expired
+  }
+}
+mutation CreateBuyerPushToken(
+  $input: CreateBuyerPushTokenInput!
+  $condition: ModelBuyerPushTokenConditionInput
+) {
+  createBuyerPushToken(input: $input, condition: $condition) {
+    id
+    userId
+    token
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateBuyerPushToken(
+  $input: UpdateBuyerPushTokenInput!
+  $condition: ModelBuyerPushTokenConditionInput
+) {
+  updateBuyerPushToken(input: $input, condition: $condition) {
+    id
+    userId
+    token
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteBuyerPushToken(
+  $input: DeleteBuyerPushTokenInput!
+  $condition: ModelBuyerPushTokenConditionInput
+) {
+  deleteBuyerPushToken(input: $input, condition: $condition) {
+    id
+    userId
+    token
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateSellerPushToken(
+  $input: CreateSellerPushTokenInput!
+  $condition: ModelSellerPushTokenConditionInput
+) {
+  createSellerPushToken(input: $input, condition: $condition) {
+    id
+    userId
+    token
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateSellerPushToken(
+  $input: UpdateSellerPushTokenInput!
+  $condition: ModelSellerPushTokenConditionInput
+) {
+  updateSellerPushToken(input: $input, condition: $condition) {
+    id
+    userId
+    token
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteSellerPushToken(
+  $input: DeleteSellerPushTokenInput!
+  $condition: ModelSellerPushTokenConditionInput
+) {
+  deleteSellerPushToken(input: $input, condition: $condition) {
+    id
+    userId
+    token
+    createdAt
+    updatedAt
+  }
+}
