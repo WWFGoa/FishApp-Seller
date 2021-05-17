@@ -23,6 +23,7 @@ import com.amplifyframework.api.graphql.model.ModelMutation
 import com.amplifyframework.api.graphql.model.ModelQuery
 import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.core.Amplify
+import com.amplifyframework.core.AmplifyConfiguration
 import com.amplifyframework.core.model.query.predicate.QueryPredicate
 import com.amplifyframework.datastore.generated.model.SellerPushToken
 import com.deepwares.fishmarketplace.interfaces.SpeciesSelector
@@ -118,6 +119,17 @@ class MainActivity : AppCompatActivity(), SpeciesSelector {
             }
         })
         findViewById<TextView>(R.id.version).setText(BuildConfig.VERSION_NAME + "(" + BuildConfig.VERSION_CODE + ")")
+
+        AmplifyConfiguration.fromConfigFile(this).platformVersions?.let {
+            Log.d(TAG, "Printing user agent map")
+            it.onEach { entry ->
+                Log.d(TAG, "Key : ${entry.key} | value : ${entry.value}")
+            }
+
+        }
+       val cat =  Amplify.Auth.categoryType
+        Amplify.API.mutate()
+        Log.d(TAG,"Cat type , ${cat.name}")
     }
 
     override fun selectSpecies(species: Species, position: Int) {

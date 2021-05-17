@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fish MarketPlace</string>
+    <string name="app_name">Test Fish MarketPlace</string>
     <string name="order_existing">Current</string>
     <string name="order_new">New</string>
     <string name="order_past">Past</string>
