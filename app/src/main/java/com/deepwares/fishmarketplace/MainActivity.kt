@@ -128,7 +128,6 @@ class MainActivity : AppCompatActivity(), SpeciesSelector {
 
         }
        val cat =  Amplify.Auth.categoryType
-        Amplify.API.mutate()
         Log.d(TAG,"Cat type , ${cat.name}")
     }
 

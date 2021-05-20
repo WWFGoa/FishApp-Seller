@@ -9,7 +9,7 @@
       "UnauthRoleName": "amplify-fmp-staging-05820-unauthRole",
       "StackName": "amplify-fmp-staging-05820",
       "StackId": "arn:aws:cloudformation:us-east-1:768987361996:stack/amplify-fmp-staging-05820/9ecca790-4327-11eb-a404-12498e67507f",
-      "AmplifyAppId": "dli0kr1iahq6h",
+      "AmplifyAppId": "dli0kr1iahq6h"
     },
     "categories": {
       "auth": {
